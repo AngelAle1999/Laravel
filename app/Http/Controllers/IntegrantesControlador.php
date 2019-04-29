@@ -57,9 +57,9 @@ class IntegrantesControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($Integrantes)
+    public function show(Integrantes $Integrante)
     {
-        return view('Integrantes.show', compact('Integrantes'));    }
+        return view('Integrantes.baja', compact('Integrante'));    }
 
     /**
      * Show the form for editing the specified resource.
@@ -67,10 +67,10 @@ class IntegrantesControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($name)
+    public function edit(Integrantes $Integrante)
     {
-        $integrantes=Integrantes::where('nombre','=',$name)->firstOrFail();    
-        return view('Integrantes.edit',compact('integrantes'));
+       // $integrantes=Integrantes::where('nombre','=',$name)->firstOrFail();    
+        return view('Integrantes.edit',compact('Integrante'));
 }
     /**
      * Update the specified resource in storage.
@@ -79,9 +79,9 @@ class IntegrantesControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Integrantes $Integrantes)
+    public function update(Request $request, Integrantes $Integrante)
     {
-        $Integrantes->update($request->all());
+        $Integrante->update($request->all());
 
         return redirect()->route('Integrantes.index');
     }
@@ -92,7 +92,7 @@ class IntegrantesControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Integrantes $integrantes)
+    public function destroy(Integrantes $Integrante)
     {
         $file_path=public_path().'/images/'.$integrantes->avatar;
         \File::delete($file_path);
