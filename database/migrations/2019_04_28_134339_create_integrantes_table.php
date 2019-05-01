@@ -16,7 +16,7 @@ class CreateIntegrantesTable extends Migration
         Schema::create('integrantes', function (Blueprint $table) {
               $table->increments('id_integrantes');
             $table->string('nombre');
-            $table->integer('correo');
+            $table->string('correo');
             $table->string('img_url');
             $table->timestamps();
         });

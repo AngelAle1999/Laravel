@@ -17,6 +17,7 @@ class CreateUsuarioRolsTable extends Migration
             $table->increments('id_usuario_rol');
             $table->integer('id_user')->unsigned();
             $table->integer('id_roles')->unsigned();
+            $table->timestamps();
         });
     }
 
