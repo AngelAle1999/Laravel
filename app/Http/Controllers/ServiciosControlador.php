@@ -57,9 +57,9 @@ class ServiciosControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show(Servicios $Servicio)
     {
-      return view('Servicos.show', compact('servicios')); 
+      return view('Servicios.baja', compact('Servicio')); 
     }
 
     /**
@@ -68,10 +68,10 @@ class ServiciosControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($name)
+    public function edit(Servicios $Servicio)
     {
-        $servicios=Servicios::where('nombre','=',$name)->firstOrFail();    
-        return view('Servicios.edit',compact('servicios'));    }
+        return view('Servicios.edit',compact('Servicio'));   
+    }
 
     /**
      * Update the specified resource in storage.
@@ -80,9 +80,9 @@ class ServiciosControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Servicios $servicios)
+    public function update(Request $request, Servicios $Servicio)
     {
-         $servicios->fill($request->all());
+         $Servicio->update($request->all());
 
         return redirect()->route('Servicios.index');
             }
@@ -93,12 +93,12 @@ class ServiciosControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Servicios $Servicio)
     {
-       $file_path=public_path().'/images/'.$Servicios->avatar;
+       $file_path=public_path().'/images/'.$Servicio->avatar;
         \File::delete($file_path);
 
-        $Servicios->delete();
+        $Servicio->delete();
         return redirect()->route('Servicios.index');
     }
 }

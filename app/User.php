@@ -8,8 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
- public function roles(){
-    return $this->belongsToMany('Laravel\Roles');
+ public function user(){
+    return $this->belongsToMany('Laravel\User');
  }
     /**
      * The attributes that are mass assignable.

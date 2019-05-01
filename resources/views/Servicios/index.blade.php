@@ -10,6 +10,14 @@
 			<div class="card-body">
 				<h5 class="card-title">{{$trainer->nombre}}</h5>
 				<a href="/Servicios/{{$trainer->nombre}}/edit" class="btn btn-success bg-info">Editar</a>
+			<form method="POST" action="/Servicios/{{$trainer->nombre}}/">
+
+		{{method_field('DELETE')}}
+		{{ csrf_field()}}
+		
+
+				<button type="submit" class="btn btn-success bg-info">Eliminar</button>
+			</form>
 			</div>
 		</div>
 	</div>

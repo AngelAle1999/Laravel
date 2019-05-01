@@ -94,10 +94,10 @@ class IntegrantesControlador extends Controller
      */
     public function destroy(Integrantes $Integrante)
     {
-        $file_path=public_path().'/images/'.$integrantes->avatar;
+        $file_path=public_path().'/images/'.$Integrante->avatar;
         \File::delete($file_path);
 
-        $integrantes->delete();
+        $Integrante->delete();
         return redirect()->route('Integrantes.index');
     }
 }
