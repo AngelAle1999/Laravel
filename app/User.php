@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    protected $primaryKey='id_user';
  public function roles(){
     return $this->belongsToMany('Laravel\User');
  }
