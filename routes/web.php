@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::resource('Integrantes','IntegrantesControlador');
 Route::resource('Servicios','ServiciosControlador');
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
