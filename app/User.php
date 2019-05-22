@@ -5,46 +5,18 @@ namespace Laravel;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable{
     use Notifiable;
-    protected $primaryKey='id_user';
- public function roles(){
-    return $this->belongsToMany('Laravel\User');
- }
- public function authorizeRoles($roles){
-    if($this->hasAnyRole($roles)){
-        return true;
-    }
-     abort(401,'This action is unauthorized');
- }
- public function hasRole($role){
-    if($this->Roles()->where('nombre',$role)->first()){
-        return true;
-    }
-    return false;
- }
 
- public function hasAnyRole($roles){
-    if(is_array($roles)){
-        foreach($roles as $rol){
-            return true;
-        }
-    }
- else{
-    if($this->hasRole($roles)){
-        return true;
-    }
-    return false;
- }
-}
+    protected $table = 'users';
+    protected $primaryKey = 'id';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'id_rol', 'imagen',
     ];
 
     /**
@@ -55,4 +27,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function rol(){
+      return $this->hasOne('App\Roles','id_rol','id_rol');
+    }
+
+    public function cotizaciones(){
+      return $this->hasMany('App\Cotizaciones', 'id', 'id_usuario');
+    }
+
+    public function seguimientos(){
+      return $this->belongsTo('App\Seguimiento','id', 'id_usuario');
+    }
+
 }

@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Route::resource('Integrantes','IntegrantesControlador');
 Route::resource('Servicios','ServiciosControlador');
+Route::resource('Usuarios','Usuarios');
+Route::resource('dashboard','dashbocontrolador');
+
+
 
 
 Auth::routes();
