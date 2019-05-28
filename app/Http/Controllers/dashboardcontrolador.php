@@ -25,7 +25,7 @@ class dashboardcontrolador extends Controller
      */
     public function create()
     {
-        //
+        return  view('Usuarios.save');
     }
 
     /**
