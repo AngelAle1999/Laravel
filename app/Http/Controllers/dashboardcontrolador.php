@@ -13,10 +13,10 @@ class dashboardcontrolador extends Controller
      */
     public function index()
     {
-     $dashboard =dashboard::all();
-    return view('Plataforma.Usuarios.index',compact('Usuario'));
+     $dashboard = dashboard::all();
+    return view('Plataforma.dashboard.index',compact('dashboard'));
     }
-    }
+    
 
     /**
      * Show the form for creating a new resource.

@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::resource('Integrantes','IntegrantesControlador');
 Route::resource('Servicios','ServiciosControlador');
 Route::resource('usua','Usuarios');
-Route::resource('dashboard','dashbocontrolador');
+Route::resource('dashboard','dashboardcontrolador');
 Route::resource('banner','BannerCtrl');
 Route::get('/usua','Usuarios@index')->name('usua');
 
