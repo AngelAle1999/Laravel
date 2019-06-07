@@ -12,13 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Plataforma.dashboard.index');
 });
 
 Route::resource('Integrantes','IntegrantesControlador');
 Route::resource('Servicios','ServiciosControlador');
 Route::resource('usua','Usuarios');
-Route::resource('dashboard','dashboardcontrolador');
+Route::resource('dash','dashboardcontrolador');
 Route::resource('banner','BannerCtrl');
 Route::get('/usua','Usuarios@index')->name('usua');
 
@@ -29,5 +29,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
+Route::get('/dash', 'dashboardcontrolador@index')->name('dash');
 
 Route::get('/home', 'HomeController@index')->name('home');

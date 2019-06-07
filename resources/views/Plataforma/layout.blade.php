@@ -63,9 +63,6 @@
     <div class='quick-area'>
         <div class='pull-left'>
             <ul class="info-menu left-links list-inline list-unstyled">
-
-                <i id="nav-icon2" class="fa fa-bars"></i>
-
                 <li class="sidebar-toggle-wrap">
                     <a href="#" data-toggle="sidebar" class="sidebar_toggle">
                         <i class="fa fa-bars"></i>
@@ -75,11 +72,9 @@
         </div>
         <div class='pull-right'>
             <ul class="info-menu right-links list-inline list-unstyled">
-                <li><a href="{{ url('lang', ['en']) }}">En</a></li> |
-                <li style="margin-right:10px;"><a href="{{ url('lang', ['es']) }}">Es</a></li>
                 <li class="profile">
                     <a href="#" data-toggle="dropdown" class="toggle">
-                        @if(Auth::check() && strlen(Auth::user()->img)>5)
+                        @if(Auth::check() && strlen(Auth::User()->img)>5)
                           <img src="/{{Auth::user()->img}}" alt="user-image" class="img-circle img-inline">
                         @else
                           <img src="{{URL::asset('img/profile.jpg')}}" alt="user-image" class="img-circle img-inline">
@@ -87,7 +82,7 @@
                         <!-- <img src="{{URL::asset('img/profile.jpg')}}" alt="user-image" class="img-circle img-inline"> -->
                         <span>
                           @if(Auth::check())
-                            {{ Auth::user()->name }}
+                            {{ Auth::User()->name }}
                           @else
                             Administrador
                           @endif
@@ -96,7 +91,7 @@
                     <ul class="dropdown-menu profile animated fadeIn">
                       @if(Auth::check())
                         <li>
-                              <a href="/plataforma/users/{{Auth::user()->id}}/edit">
+                              <a href="usua/{{Auth::user()->id_user}}/edit">
                               <i class="fa fa-user"></i>
                               Editar Perfil
                             </a>
@@ -156,13 +151,18 @@
             <ul class='wraplist'>
 
 
-                <li class="{{ (Request::is('plataforma') ? 'open' : '') }}">
-                    <a href="/plataforma">
+                <li class="{{ (Request::is('dash') ? 'open' : '') }}">
+                    <a href="/dash">
                         <i class="fa fa-dashboard"></i>
-                        <span class="title">{{ trans('menu.dashboard') }}</span>
+                        <span class="title">{{ trans('Dashboard') }}</span>
                     </a>
                 </li>
-
+            <li class="{{ (Request::is('usua') ? 'open' : '') }}">
+                    <a href="/usua">
+                        <i class="fa fa-Usuarios"></i>
+                        <span class="title">{{ trans('Usuarios') }}</span>
+                    </a>
+                </li>
             </ul>
 
         </div>
@@ -171,7 +171,7 @@
 
 
         <div class="project-info text-center" style="">
-          <p> Desarrollado por Fraktalweb</p>
+          <p> Realizado por el equipo Hecho</p>
         </div>
 
 
@@ -213,23 +213,6 @@
 
   </div>
 
-
-  <div class="sliding-menu left-menu main-menu-wrapper">
-
-    <i class="pull-right left-exit fa fa-close icon-danger icon-lg"></i>
-
-    <ul class='wraplist'>
-
-        <li class="{{ (Request::is('plataforma') ? 'open' : '') }}">
-            <a href="/plataforma">
-                <i class="fa fa-dashboard"></i>
-                <span class="title">{{ trans('menu.dashboard') }}</span>
-            </a>
-        </li>
-
-    </ul>
-  </div>
-<!-- END CONTAINER -->
 <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
 
 @section('footer')
@@ -255,7 +238,6 @@
   {{ HTML::script('assets/plugins/jquery-validation/js/jquery.validate.min.js', ["type" => "text/javascript"]) }}
   {{ HTML::script('assets/plugins/jquery-validation/js/additional-methods.min.js', ["type" => "text/javascript"]) }}
   {{ HTML::script('assets/js/form-validation.js', ["type" => "text/javascript"]) }}
-  {{ HTML::script('assets/plugins/datatables/js/jquery.dataTables.min.js', ["type" => "text/javascript"]) }}
   {{ HTML::script('assets/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js', ["type" => "text/javascript"]) }}
   {{ HTML::script('assets/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js', ["type" => "text/javascript"]) }}
   {{ HTML::script('assets/plugins/datatables/extensions/Responsive/bootstrap/3/dataTables.bootstrap.js', ["type" => "text/javascript"]) }}
@@ -271,7 +253,7 @@
 
 
   <!-- CORE TEMPLATE JS - START -->
-  {{ HTML::script('assets/js/scripts.js') }}
+    {{ HTML::script('assets/js/scripts.js') }}
   <!-- END CORE TEMPLATE JS - END -->
 
 

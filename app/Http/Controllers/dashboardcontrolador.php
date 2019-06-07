@@ -3,6 +3,8 @@
 namespace Laravel\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laravel\dashboard;
+
 
 class dashboardcontrolador extends Controller
 {
@@ -13,8 +15,8 @@ class dashboardcontrolador extends Controller
      */
     public function index()
     {
-     $dashboard = dashboard::all();
-    return view('Plataforma.dashboard.index',compact('dashboard'));
+     $dash = dashboard::all();
+    return view('Plataforma.dashboard.index', compact('dash'));
     }
     
 
@@ -25,7 +27,6 @@ class dashboardcontrolador extends Controller
      */
     public function create()
     {
-        return  view('Usuarios.save');
     }
 
     /**
