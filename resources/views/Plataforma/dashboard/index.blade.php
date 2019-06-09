@@ -1,9 +1,9 @@
 @extends('plataforma.layout')
 
 
-@section('title') {{ trans('dashboard.organization') }} @stop
+@section('title') {{ trans('Dashboard') }} @stop
 
-@section('main_title') {{ trans('dashboard.welcome') }} @stop
+@section('main_title') {{ trans('Dashboard') }} @stop
 
 @section('content')
 
@@ -46,12 +46,12 @@
 
         <div class="row">
 
-            <a href="{{url('/plataforma/dashboard')}}">
+            <a href="{{url('/plataforma/inventario')}}">
               <div class="col-md-4 col-sm-6 col-xs-6">
                   <div class="r4_counter db_box">
                       <i class="pull-left fa fa-cubes icon-md icon-rounded icon-primary"></i>
                       <div class="stats">
-                          <h4><strong>{{ Html::link('/plataforma/dashboard', 0) }}</strong></h4>
+                          <h4><strong>{{ Html::link('/plataforma/inventario', 0) }}</strong></h4>
                           <span class="hidden-xs">Something</span>
                       </div>
                   </div>
