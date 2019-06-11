@@ -77,9 +77,9 @@
                         @if(Auth::check() && strlen(Auth::User()->img)>5)
                           <img src="/{{Auth::user()->img}}" alt="user-image" class="img-circle img-inline">
                         @else
-                          <img src="{{URL::asset('img/profile.jpg')}}" alt="user-image" class="img-circle img-inline">
+                          <img src="{{URL::asset('assets/images/avatar2.jpg')}}" alt="user-image" class="img-circle img-inline">
                         @endif
-                        <!-- <img src="{{URL::asset('img/profile.jpg')}}" alt="user-image" class="img-circle img-inline"> -->
+                        <!-- <img src="{{URL::asset('assets/images/avatar2.jpg')}}" alt="user-image" class="img-circle img-inline"> -->
                         <span>
                           @if(Auth::check())
                             {{ Auth::User()->name }}
@@ -151,15 +151,15 @@
             <ul class='wraplist'>
 
 
-                <li class="{{ (Request::is('dash') ? 'open' : '') }}">
-                    <a href="/dash">
+                <li class="{{ (Request::is('Plataforma') ? 'open' : '') }}">
+                    <a href="/Plataforma">
                         <i class="fa fa-dashboard"></i>
                         <span class="title">{{ trans('Dashboard') }}</span>
                     </a>
                 </li>
             <li class="{{ (Request::is('usua') ? 'open' : '') }}">
                     <a href="/usua">
-                        <i class="fa fa-Usuarios"></i>
+                        <i class="fa fa-users"></i>
                         <span class="title">{{ trans('Usuarios') }}</span>
                     </a>
                 </li>

@@ -16,7 +16,7 @@ class User extends Authenticatable{
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'id_rol', 'imagen',
+        'name', 'email', 'password', 'id_roles', 'imagen',
     ];
 
     /**
@@ -29,7 +29,7 @@ class User extends Authenticatable{
     ];
 
     public function rol(){
-      return $this->hasOne('App\Roles','id_rol','id_rol');
+      return $this->hasOne('App\Roles','id_roles','id_roles');
     }
 
     public function cotizaciones(){

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Roles extends Model{
   protected $table = 'roles';
-  protected $primaryKey = 'id_rol';
+  protected $primaryKey = 'id_roles';
   protected $fillable =  ['rol'];
 
   public function user(){
-    return $this->belongsTo('App\User','id_rol','id_rol');
+    return $this->belongsTo('App\User','id_roles','id_roles');
   }
 
 }
