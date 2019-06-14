@@ -48,17 +48,6 @@
 
                                                 </tr>
                                             </thead>
-
-                                            <tfoot>
-                                                <tr>
-                                                   <th>Nombre</th>
-                                                    <th>Correo</th>
-                                                    <th>Contraseña</th>
-                                                    <th>Id_Rol</th>
-                                                    <th>Opciones</th>
-                                                </tr>
-                                            </tfoot>
-
                                             <tbody>
                                                 @foreach($usua as $usuario)
                                                 <tr>
