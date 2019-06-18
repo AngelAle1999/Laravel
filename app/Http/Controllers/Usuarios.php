@@ -2,8 +2,18 @@
 
 namespace Laravel\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request as req;
 use Laravel\User;
+use Laravel\Roles;
+
+use Hash;
+use Request;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+use File;
+use Auth;
+use DB;
 
 class Usuarios extends Controller
 {
@@ -35,7 +45,10 @@ class Usuarios extends Controller
         // 'posiciones' => $pos
     ];
       // return $data;
-    return view('plataforma.Usuarios.save')->with($usuarios);
+$roles =Roles::all();
+
+
+    return view('plataforma.Usuarios.save',compact('roles'))->with($usuarios);
 }
 
     /**
@@ -46,20 +59,47 @@ class Usuarios extends Controller
      */
     public function store(Request $request)
     {
-        $usua= new User();
+      $inputs = Request::all();
+      // return $inputs;
+      $rules = [
+            'name' => 'required|min:4|alpha',
+          'email' => 'required|email|unique:users,email',
+        'password' => 'required|min:4',
+        'id_roles' => 'required',
 
-        $usua->name=$request->input('name');
-        $usua->email=$request->input('email');
-        $usua->password=$request->input('password');
-        $usua->id_roles=$request->input('id_roles');
+        ];
+      $messages = [ 
+          'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
+         'name.required' => 'Debes de llenar el campo nombre',
+         'name.alpha' => 'El campo nombre solo puede contener texto',
+          'email.unique' => 'El correo ya se encuentra registrado',
+        'email.email' => 'El correo debe contener @, gmail. hotmail, com, etc ',
+         'email.required' => 'Debes de llenar el campo correo',
+        'password.min' => 'Debes completar con al menos 4 caracteres',
+            'password.required' => 'Debes de llenar el campo contraseña',
+         'id_roles.required' => 'Debes de llenar el campo id_roles',
+      ];
 
-        $usua->save();
 
-return redirect()->route('usua'); 
+      $validar = Validator::make($inputs, $rules, $messages);
+          $inputs['password']=Hash::make($inputs['password']);
+
+      if($validar->fails()){
+        return Redirect::back()->withInput(Request::all())->withErrors($validar);
+      }else{
+        $user = User::create($inputs);
+        if($user){
+          session()->flash('success','Usuario Creado!');
+        }else{
+          session()->flash('notice','¡Ocurrio un error al crear el cliente, intentalo de nuevo!');
+        }
+
+    return redirect()->route('usua'); 
     //     $usua=$request->except(['_token','_method']);
     //     User::where('id',$id)->update($usua);
     //     return redirect()->route('usua');
     }
+}
 
     /**
      * Display the specified resource.
@@ -89,8 +129,10 @@ return redirect()->route('usua');
         'user' => $edit,
         // 'posiciones' => $pos
     ];
-      // return $data;
-    return view('plataforma.Usuarios.save')->with($a);
+ $roles =Roles::all();
+
+
+    return view('plataforma.Usuarios.save',compact('roles'))->with($a);
 }
 
     /**
@@ -102,15 +144,44 @@ return redirect()->route('usua');
      */
     public function update(Request $request, $id)
     {
-      $updat=User::findOrFail($id);
-      $datos = [
-        'name' => $request['name'],
-        'email' => $request['email'],
-        'password' => $request['password'],
-        'id_roles' => $request['id_roles']
-    ];
-    $updat->fill($datos)->save();
-    return redirect()->route('usua');    }
+      $inputs = Request::all();
+ $rules = [
+            'name' => 'required|min:4|alpha',
+          'email' => 'required|email',
+        'password' => 'min:4',
+        'id_roles' => 'required',
+
+        ];
+      $messages = [
+         'name.required' => 'Debes de llenar el campo nombre',
+          'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
+         'name.alpha' => 'El campo nombre solo puede contener texto',
+         'email.required' => 'Debes de llenar el campo correo',
+        'email.email' => 'El correo debe contener @, gmail. hotmail, com, etc ',
+        'password.min' => 'Debes completar con al menos 4 caracteres',
+         'id_roles.required' => 'Debes de llenar el campo id_roles',
+      ];
+
+$validar = Validator::make($inputs, $rules, $messages);
+          $inputs['password']=Hash::make($inputs['password']);
+
+      if($validar->fails()){
+        return Redirect::back()->withInput(Request::all())->withErrors($validar);
+      }else{
+        $user = User::findOrFail($id);
+        if($user){
+          session()->flash('success','Usuario Modificado!');
+        }else{
+          session()->flash('notice','¡Ocurrio un error al crear el cliente, intentalo de nuevo!');
+        }
+        $user->fill($inputs)->save();
+
+    return redirect()->route('usua'); 
+    //     $usua=$request->except(['_token','_method']);
+    //     User::where('id',$id)->update($usua);
+    //     return redirect()->route('usua');
+    }
+}
 
     /**
      * Remove the specified resource from storage.

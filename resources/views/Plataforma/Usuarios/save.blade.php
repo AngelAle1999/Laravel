@@ -2,6 +2,20 @@
 
 <div class="col-md-6">
 
+
+    @if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+            @endforeach
+        </ul>
+
+    </div>
+@endif
+
+
+
     <section class="box ">
         <header class="panel_header">
                 <h2 class="title pull-left">GUARDAR USUARIO</h2>
@@ -41,7 +55,7 @@
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('password', $user->password) }}
-                                {{ Form::text ('password', $user->password, ['class' => 'form-control password']) }}
+                                {{ Form::password ('password', $user-> null, ['class' => 'form-control password']) }}
                             </div>
                         </div>
 
@@ -49,8 +63,11 @@
                             {{ Form::label ('titulo', 'Id_rol *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
-                                {{ Form::hidden('id_roles', $user->id_roles) }}
-                                {{ Form::text ('id_roles', $user->id_roles, ['class' => 'form-control id_roles']) }}
+                                    <select name="id_roles" id="id_roles"  class="'form-control id_roles">
+                                        @foreach($roles as $rol)
+                                        <option value="{{$rol['id_roles']}}">{{$rol['nombre']}}</option>
+                                        @endforeach
+                                    </select>
                             </div>
 
                         @if($user->id_user)
