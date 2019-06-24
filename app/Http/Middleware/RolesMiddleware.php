@@ -2,7 +2,7 @@
 
 
 
-namespace App\Http\Middleware;
+namespace Laravel\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +20,7 @@ class RolesMiddleware{
     public function handle($request, Closure $next, $role){
 
         if(Auth::user()){
-            $rol_id=Auth::user()->id_rol;
+            $rol_id=Auth::user()->id_roles;
             $roles = explode("-", $role);
             if(in_array($rol_id, $roles) == false) {
                 return Redirect::to('/');
