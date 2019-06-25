@@ -1,4 +1,4 @@
-@extends('plataforma.layout')
+@extends('Plataforma.layout')
 
 
 @section('title') {{ trans('Dashboard') }} @stop

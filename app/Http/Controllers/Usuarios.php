@@ -48,7 +48,7 @@ class Usuarios extends Controller
 $roles =Roles::all();
 
 
-    return view('plataforma.Usuarios.save',compact('roles'))->with($usuarios);
+    return view('Plataforma.Usuarios.save',compact('roles'))->with($usuarios);
 }
 
     /**
@@ -132,7 +132,7 @@ $roles =Roles::all();
  $roles =Roles::all();
 
 
-    return view('plataforma.Usuarios.save',compact('roles'))->with($a);
+    return view('Plataforma.Usuarios.save',compact('roles'))->with($a);
 }
 
     /**
