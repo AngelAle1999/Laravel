@@ -163,6 +163,27 @@
                         <span class="title">{{ trans('Usuarios') }}</span>
                     </a>
                 </li>
+
+                <li class="{{ (Request::is('mob') ? 'open' : '') }}">
+                    <a href="/mob">
+                        <i class="fa fa-desktop"></i>
+                        <span class="title">{{ trans('Mobiliario') }}</span>
+                    </a>
+                </li>
+
+                <li class="{{ (Request::is('plan') ? 'open' : '') }}">
+                    <a href="/plan">
+                        <i class="fa fa-file-o"></i>
+                        <span class="title">{{ trans('Plantilla') }}</span>
+                    </a>
+                </li>
+
+                 <li class="{{ (Request::is('pla') ? 'open' : '') }}">
+                    <a href="/pla">
+                        <i class="glyphicon glyphicon-cutlery"></i>
+                        <span class="title">{{ trans('Platillos') }}</span>
+                    </a>
+                </li>
             </ul>
 
         </div>

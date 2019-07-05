@@ -1,4 +1,4 @@
-@extends('plataforma.layout') @section('title') Banners @stop @section('content')
+@extends('Plataforma.layout') @section('title') Isuarios @stop @section('content')
 
 <div class="col-md-6">
 

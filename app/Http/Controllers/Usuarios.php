@@ -48,7 +48,7 @@ class Usuarios extends Controller
 $roles =Roles::all();
 
 
-    return view('plataforma.Usuarios.save',compact('roles'))->with($usuarios);
+    return view('Plataforma.Usuarios.save',compact('roles'))->with($usuarios);
 }
 
     /**
@@ -75,7 +75,7 @@ $roles =Roles::all();
           'email.unique' => 'El correo ya se encuentra registrado',
         'email.email' => 'El correo debe contener @, gmail. hotmail, com, etc ',
          'email.required' => 'Debes de llenar el campo correo',
-        'password.min' => 'Debes completar con al menos 4 caracteres',
+        'password.min' => 'Debes completar con al menos 4 caracteres el campo password',
             'password.required' => 'Debes de llenar el campo contraseña',
          'id_roles.required' => 'Debes de llenar el campo id_roles',
       ];
@@ -91,10 +91,10 @@ $roles =Roles::all();
         if($user){
           session()->flash('success','Usuario Creado!');
         }else{
-          session()->flash('notice','¡Ocurrio un error al crear el cliente, intentalo de nuevo!');
+          session()->flash('notice','¡Ocurrio un error al crear el Usuario, intentalo de nuevo!');
         }
 
-    return redirect()->route('usua'); 
+    return redirect()->to('Plataforma/usua'); 
     //     $usua=$request->except(['_token','_method']);
     //     User::where('id',$id)->update($usua);
     //     return redirect()->route('usua');
@@ -132,7 +132,7 @@ $roles =Roles::all();
  $roles =Roles::all();
 
 
-    return view('plataforma.Usuarios.save',compact('roles'))->with($a);
+    return view('Plataforma.Usuarios.save',compact('roles'))->with($a);
 }
 
     /**
@@ -158,7 +158,7 @@ $roles =Roles::all();
          'name.alpha' => 'El campo nombre solo puede contener texto',
          'email.required' => 'Debes de llenar el campo correo',
         'email.email' => 'El correo debe contener @, gmail. hotmail, com, etc ',
-        'password.min' => 'Debes completar con al menos 4 caracteres',
+        'password.min' => 'Debes completar con al menos 4 caracteres el campo password',
          'id_roles.required' => 'Debes de llenar el campo id_roles',
       ];
 
@@ -172,11 +172,11 @@ $validar = Validator::make($inputs, $rules, $messages);
         if($user){
           session()->flash('success','Usuario Modificado!');
         }else{
-          session()->flash('notice','¡Ocurrio un error al crear el cliente, intentalo de nuevo!');
+          session()->flash('notice','¡Ocurrio un error al modificar el usuario, intentalo de nuevo!');
         }
         $user->fill($inputs)->save();
 
-    return redirect()->route('usua'); 
+    return redirect()->to('Plataforma/usua'); 
     //     $usua=$request->except(['_token','_method']);
     //     User::where('id',$id)->update($usua);
     //     return redirect()->route('usua');
@@ -192,5 +192,5 @@ $validar = Validator::make($inputs, $rules, $messages);
     public function destroy($id)
     {
         User::destroy($id);
-            return redirect()->route('usua');    }
+            return redirect()->to('Plataforma/usua');    }
 }

@@ -25,6 +25,14 @@ Route::group(['middleware' => 'roles:1-2', 'prefix' => 'Plataforma'], function (
     // Aqui cargar cada módulo -> 
     Route::resource('usua','Usuarios');
 });
+    Route::resource('usua','Usuarios');
+    Route::resource('mob','MobiliarioControlador');
+    Route::resource('plan','PlantillaControlador');
+    Route::resource('pla','PlatillosControlador');
+
+
+
+
 
 // Route::get('/usua','Usuarios@index')->name('usua');
 // Route::get('/dash', 'dashboardcontrolador@index')->name('dash');
