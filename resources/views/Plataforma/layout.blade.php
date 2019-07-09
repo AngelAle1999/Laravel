@@ -157,29 +157,29 @@
                         <span class="title">{{ trans('Dashboard') }}</span>
                     </a>
                 </li>
-            <li class="{{ (Request::is('usua') ? 'open' : '') }}">
-                    <a href="/usua">
+            <li class="{{ (Request::is('Plataforma/usua*') ? 'open' : '') }}"> {{--  Esta linea hace que se muestre la pestaña en el menu activa --}}
+                    <a href="/Plataforma/usua">  {{-- A donde se va a redirigir --}}
                         <i class="fa fa-users"></i>
                         <span class="title">{{ trans('Usuarios') }}</span>
                     </a>
                 </li>
 
-                <li class="{{ (Request::is('mob') ? 'open' : '') }}">
-                    <a href="/mob">
+                <li class="{{ (Request::is('Plataforma/mob*') ? 'open' : '') }}">
+                    <a href="/Plataforma/mob">
                         <i class="fa fa-desktop"></i>
                         <span class="title">{{ trans('Mobiliario') }}</span>
                     </a>
                 </li>
 
-                <li class="{{ (Request::is('plan') ? 'open' : '') }}">
-                    <a href="/plan">
+                <li class="{{ (Request::is('/Plataforma/plan*') ? 'open' : '') }}">
+                    <a href="/Plataforma/plan">
                         <i class="fa fa-file-o"></i>
                         <span class="title">{{ trans('Plantilla') }}</span>
                     </a>
                 </li>
 
-                 <li class="{{ (Request::is('pla') ? 'open' : '') }}">
-                    <a href="/pla">
+                 <li class="{{ (Request::is('/Plataforma/pla*') ? 'open' : '') }}">
+                    <a href="/Plataforma/pla">
                         <i class="glyphicon glyphicon-cutlery"></i>
                         <span class="title">{{ trans('Platillos') }}</span>
                     </a>

@@ -62,7 +62,7 @@ $roles =Roles::all();
       $inputs = Request::all();
       // return $inputs;
       $rules = [
-            'name' => 'required|min:4|alpha',
+            'name' => 'required|min:4',
           'email' => 'required|email|unique:users,email',
         'password' => 'required|min:4',
         'id_roles' => 'required',
@@ -146,9 +146,8 @@ $roles =Roles::all();
     {
       $inputs = Request::all();
  $rules = [
-            'name' => 'required|min:4|alpha',
+            'name' => 'required|min:4',
           'email' => 'required|email',
-        'password' => 'min:4',
         'id_roles' => 'required',
 
         ];
@@ -158,12 +157,13 @@ $roles =Roles::all();
          'name.alpha' => 'El campo nombre solo puede contener texto',
          'email.required' => 'Debes de llenar el campo correo',
         'email.email' => 'El correo debe contener @, gmail. hotmail, com, etc ',
-        'password.min' => 'Debes completar con al menos 4 caracteres el campo password',
          'id_roles.required' => 'Debes de llenar el campo id_roles',
       ];
 
-$validar = Validator::make($inputs, $rules, $messages);
-          $inputs['password']=Hash::make($inputs['password']);
+      $validar = Validator::make($inputs, $rules, $messages);
+      if(isset($inputs['password'])){
+        $inputs['password']=Hash::make($inputs['password']);
+      }
 
       if($validar->fails()){
         return Redirect::back()->withInput(Request::all())->withErrors($validar);
