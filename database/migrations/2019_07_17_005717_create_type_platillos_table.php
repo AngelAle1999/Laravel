@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlatillosTable extends Migration
+class CreateTypePlatillosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreatePlatillosTable extends Migration
      */
     public function up()
     {
-        Schema::create('platillos', function (Blueprint $table) {
-           $table->increments('id_type_platillo');
+        Schema::create('TypePlatillos', function (Blueprint $table) {
+            $table->increments('id_type_platillos');
             $table->string('name');
             $table->string('img_src');
+            $table->string('description');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -27,6 +29,6 @@ class CreatePlatillosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_platillos');
+        Schema::dropIfExists('TypePlatillos');
     }
 }

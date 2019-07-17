@@ -29,7 +29,7 @@
                       <?php $lectura = "enabled" ?>
                     @endif
 
-                    {{ Form::open( array('url' => 'plan/'.$plan->id_plantilla, 'method' => 'POST','class' => 'datosPedido', 'enctype' => 'multipart/form-data') ) }}
+                    {{ Form::open( array('url' => 'Plataforma/plan/'.$plan->id_plantilla, 'method' => 'POST','class' => 'datosPedido', 'enctype' => 'multipart/form-data') ) }}
 
                         <div class="form-group">
                             {{ Form::label ('titulo', 'Nombre *', ['class' => 'form-label']) }}
@@ -75,7 +75,7 @@
                         @endif
 
                         <div class="text-right" style="margin-top:120px;">
-                             {{ link_to('plan', 'Cancelar', ['class' => 'btn btn-warning']) }}
+                             {{ link_to('Plataforma/plan', 'Cancelar', ['class' => 'btn btn-warning']) }}
                             {{ Form::submit('Guardar', ['class' => 'btn btn-success', 'type' => 'submit', 'id_plantilla' => 'guardar']) }}
                         </div>
                         {{ csrf_field() }}

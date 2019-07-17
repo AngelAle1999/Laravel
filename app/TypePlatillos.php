@@ -4,17 +4,17 @@ namespace Laravel;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Platillos extends Model
+class TypePlatillos extends Model
 {
-    protected $table = 'Platillos';
-    protected $primaryKey = 'id_platillo';
+  protected $table = 'TypePlatillos';
+    protected $primaryKey = 'id_type_platillos';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name','img_src',
+        'name','img_src', 'description',
     ];
 
     /**

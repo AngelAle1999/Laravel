@@ -29,7 +29,7 @@
                       <?php $lectura = "enabled" ?>
                     @endif
 
-                    {{ Form::open( array('url' => 'mob/'.$mob->id_mobiliario, 'method' => 'POST','class' => 'datosPedido', 'enctype' => 'multipart/form-data') ) }}
+                    {{ Form::open( array('url' => 'Plataforma/mob/'.$mob->id_mobiliario, 'method' => 'POST','class' => 'datosPedido', 'enctype' => 'multipart/form-data') ) }}
 
                         <div class="form-group">
                             {{ Form::label ('titulo', 'Nombre *', ['class' => 'form-label']) }}
@@ -119,7 +119,7 @@
 
 
                         <div class="text-right" style="margin-top:120px;">
-                             {{ link_to('mob', 'Cancelar', ['class' => 'btn btn-warning']) }}
+                             {{ link_to('Plataforma/mob', 'Cancelar', ['class' => 'btn btn-warning']) }}
                             {{ Form::submit('Guardar', ['class' => 'btn btn-success', 'type' => 'submit', 'id_mobiliario' => 'guardar']) }}
                         </div>
                         {{ csrf_field() }}

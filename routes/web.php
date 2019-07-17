@@ -21,7 +21,7 @@ Route::group(['middleware' => 'roles:1-2', 'prefix' => 'Plataforma'], function (
     Route::resource('usua','Usuarios');
     Route::resource('mob','MobiliarioControlador');
     Route::resource('plan','PlantillaControlador');
-    Route::resource('pla','PlatillosControlador');
+    Route::resource('tpla','TypePlatillosControlador');
     
 });
 

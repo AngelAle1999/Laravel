@@ -3,7 +3,7 @@
 namespace Laravel\Http\Controllers;
 
 use Illuminate\Http\Request as req;
-use Laravel\Platillos;
+use Laravel\TypePlatillos;
 use Hash;
 use Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Redirect;
 use File;
 use Auth;
 use DB;
-class PlatillosControlador extends Controller
+
+class TypePlatillosControlador extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +22,8 @@ class PlatillosControlador extends Controller
      */
     public function index()
     {
-          $pla = Platillos::all();
-      return view('Plataforma.Platillos.index', compact('pla'));
+ $tpla = TypePlatillos::all();
+      return view('Plataforma.TypePlatillos.index', compact('tpla'));
     }
 
     /**
@@ -32,19 +33,19 @@ class PlatillosControlador extends Controller
      */
     public function create()
     {
-   $a = new Platillos();
+     $a = new TypePlatillos();
       // $pos = [];
       // for ($i=1; $i <= count(User::all()) + 1 ; $i++) {
       //   $pos[$i] = $i;
       // }
      $platillo = [
-        'pla' => $a,
+        'tpla' => $a,
         // 'posiciones' => $pos
     ];
       // return $data;
 
 
-      return view('Plataforma.Platillos.save ')->with($platillo);
+      return view('Plataforma.TypePlatillos.save ')->with($platillo);
     }
 
     /**
@@ -54,12 +55,14 @@ class PlatillosControlador extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+   {
      $inputs = Request::all();
       // return $inputs;
       $rules = [
             'name' => 'required|min:4|alpha',
             'img_src' => 'required',
+            'description' => 'required|min:4|alpha',
+
 
         ];
       $messages = [ 
@@ -67,7 +70,9 @@ class PlatillosControlador extends Controller
          'name.required' => 'Debes de llenar el campo nombre',
          'name.alpha' => 'El campo nombre solo puede contener texto',
          'img_src.required' => 'Debes de llenar el campo img_src',
-
+          'description.min' => 'Debes completar con al menos 4 caracteres el campo description',
+         'description.required' => 'Debes de llenar el campo description',
+         'description.alpha' => 'El campo description solo puede contener texto',
       ];
 
          $validar = Validator::make($inputs, $rules, $messages);
@@ -76,15 +81,16 @@ class PlatillosControlador extends Controller
         return Redirect::back()->withInput(Request::all())->withErrors($validar);
       }else{
         $file = Request::file('img_src');
-        $pla = Platillos::create($inputs);
-        if($pla){
+        $tpla = TypePlatillos::create($inputs);
+        if($tpla){
           session()->flash('success','Platillo Creado!');
         }else{
           session()->flash('notice','¡Ocurrio un error al crear el Platillo, intentalo de nuevo!');
         }
 
-    return redirect()->to('pla'); 
+    return redirect()->to('Plataforma/tpla'); 
     }}
+
     /**
      * Display the specified resource.
      *
@@ -104,19 +110,18 @@ class PlatillosControlador extends Controller
      */
     public function edit($id)
     {
-       $edit = Platillos::findOrFail($id);
+    $tedit = TypePlatillos::findOrFail($id);
        $pos = [];
-       for ($i=1; $i <= count(Platillos::all()) ; $i++) {
+       for ($i=1; $i <= count(TypePlatillos::all()) ; $i++) {
         $pos[$i] = $i;
        }
      $a = [
-        'pla' => $edit,
+        'tpla' => $tedit,
         // 'posiciones' => $pos
     ];
 
-    return view('Plataforma.Platillos.save')->with($a);
+    return view('Plataforma.TypePlatillos.save')->with($a);
 }
-
     /**
      * Update the specified resource in storage.
      *
@@ -128,9 +133,11 @@ class PlatillosControlador extends Controller
     {
         $inputs = Request::all();
       // return $inputs;
-      $rules = [
+     $rules = [
             'name' => 'required|min:4|alpha',
             'img_src' => 'required',
+            'description' => 'required|min:4|alpha',
+
 
         ];
       $messages = [ 
@@ -138,24 +145,25 @@ class PlatillosControlador extends Controller
          'name.required' => 'Debes de llenar el campo nombre',
          'name.alpha' => 'El campo nombre solo puede contener texto',
          'img_src.required' => 'Debes de llenar el campo img_src',
-         
+          'description.min' => 'Debes completar con al menos 4 caracteres el campo description',
+         'description.required' => 'Debes de llenar el campo description',
+         'description.alpha' => 'El campo description solo puede contener texto',
       ];
-
          $validar = Validator::make($inputs, $rules, $messages);
 
       if($validar->fails()){
         return Redirect::back()->withInput(Request::all())->withErrors($validar);
       }else{
         $file = Request::file('img_src');
-        $pla = Platillos::findOrFail($id);
-        if($pla){
+        $tpla = TypePlatillos::findOrFail($id);
+        if($tpla){
           session()->flash('success','Platillo Modificado!');
         }else{
           session()->flash('notice','¡Ocurrio un error al modificar el Platillo, intentalo de nuevo!');
         }
-        $pla->fill($inputs)->save();
+        $tpla->fill($inputs)->save();
 
-    return redirect()->to('pla'); 
+    return redirect()->to('Plataforma/tpla'); 
     }}
 
     /**
@@ -166,7 +174,7 @@ class PlatillosControlador extends Controller
      */
     public function destroy($id)
     {
-        Platillos::destroy($id);
-            return redirect()->to('pla');    
+          TypePlatillos::destroy($id);
+            return redirect()->to('Plataforma/tpla');    
     }
 }

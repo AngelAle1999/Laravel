@@ -22,7 +22,7 @@ class MobiliarioControlador extends Controller
      */
     public function index()
     {
-         $mob =Mobiliario::all();
+         $mob = Mobiliario::all();
       return view('Plataforma.Mobiliario.index', compact('mob'));
     }
 
@@ -98,7 +98,7 @@ class MobiliarioControlador extends Controller
           session()->flash('notice','¡Ocurrio un error al crear el Mobiliario, intentalo de nuevo!');
         }
 
-    return redirect()->to('mob'); 
+    return redirect()->to('Plataforma/mob'); 
     }}
 
     /**
@@ -184,7 +184,7 @@ class MobiliarioControlador extends Controller
         }
         $mob->fill($inputs)->save();
 
-    return redirect()->to('mob'); 
+    return redirect()->to('Plataforma/mob'); 
     }}
 
 
@@ -199,6 +199,6 @@ class MobiliarioControlador extends Controller
     public function destroy($id)
     {
            Mobiliario::destroy($id);
-            return redirect()->to('mob');    
+            return redirect()->to('Plataforma/mob');    
     }
 }

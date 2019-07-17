@@ -90,7 +90,7 @@ class PlantillaControlador extends Controller
           session()->flash('notice','¡Ocurrio un error al crear la Plantilla, intentalo de nuevo!');
         }
 
-    return redirect()->to('plan'); 
+    return redirect()->to('Plataforma/plan'); 
     }}
 
     /**
@@ -166,7 +166,7 @@ class PlantillaControlador extends Controller
         }
         $plan->fill($inputs)->save();
 
-    return redirect()->to('plan'); 
+    return redirect()->to('Plataforma/plan'); 
     }}
     /**
      * Remove the specified resource from storage.
@@ -177,6 +177,6 @@ class PlantillaControlador extends Controller
     public function destroy($id)
     {
      Plantilla::destroy($id);
-            return redirect()->to('plan');    
+            return redirect()->to('Plataforma/plan');    
     }
 }

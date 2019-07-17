@@ -178,10 +178,10 @@
                     </a>
                 </li>
 
-                 <li class="{{ (Request::is('/Plataforma/pla*') ? 'open' : '') }}">
-                    <a href="/Plataforma/pla">
+                 <li class="{{ (Request::is('/Plataforma/tpla*') ? 'open' : '') }}">
+                    <a href="/Plataforma/tpla">
                         <i class="glyphicon glyphicon-cutlery"></i>
-                        <span class="title">{{ trans('Platillos') }}</span>
+                        <span class="title">{{ trans('Type_Platillos') }}</span>
                     </a>
                 </li>
             </ul>

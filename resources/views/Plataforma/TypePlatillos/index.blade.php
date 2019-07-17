@@ -1,16 +1,16 @@
 @extends('Plataforma.layout')
 
 
-@section('title') Platillos @stop
+@section('title') TypePlatillo @stop
 
 @section('content')
 
     <div class="col-md-12">
         <section class="box ">
           <header class="panel_header">
-              <h2 class="title pull-left">Platillos</h2>
+              <h2 class="title pull-left">TypePlatillo</h2>
               <div class="actions panel_actions pull-right">
-                  {{ Html::link('pla/create', 'Crear Nuevo', array('class' => 'btn btn-info')) }}
+                  {{ Html::link('Plataforma/tpla/create', 'Crear Nuevo', array('class' => 'btn btn-info')) }}
               </div>
           </header>
           <div class="content-body">
@@ -36,26 +36,30 @@
 
 
                 <div class="row">
-                    @if ($pla->count())
+                    @if ($tpla->count())
                          <table id="example-1" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th>name</th>
                                                     <th>img_src</th>
+                                                    <th>description</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($pla as $platillo)
+                                                @foreach($tpla as $tplatillo)
                                                 <tr>
-                                                    <td>{{$platillo->name}}</td>
-                                                    <td>{{$platillo->img_src}}</td>
+                                                    <td>{{$tplatillo->name}}</td>
+                                                    <td>{{$tplatillo->img_src}}</td>
+                                                    <td>{{$tplatillo->description}}</td>
+
 
 
                                                      <td width="25%" class="text-left">
-                                        <a href="pla/{{$platillo->id_platillo}}/edit" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Editar registro" data-placement="top">
+                                        <a href="tpla/{{$tplatillo->id_type_platillos}}/edit" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Editar registro" data-placement="top">
                                           <i class="fa fa-pencil" ></i>
                                         </a>
-                                        {{ Form::open(array('url' => 'pla/'.$platillo->id_platillo)) }}
+                                        {{ Form::open(array('url' => 'Plataforma/tpla/'.$tplatillo->id_type_platillos)) }}
                                         {{ Form::hidden("_method",  "DELETE") }}
                                         {{ Form::submit("x", array('class' => 'btn btn-xs btn-danger pull-left right15', 'onclick' => 'return confirm("Seguro que deseas eliminar?");')) }}
                                         {{ Form::close() }}
