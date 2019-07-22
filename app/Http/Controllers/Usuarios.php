@@ -25,7 +25,7 @@ class Usuarios extends Controller
     public function index()
     {
       $usua =User::all();
-      return view('Plataforma.Usuarios.index', compact('usua'));
+      return view('Plataforma.Usuarios.Index', compact('usua'));
   }
 
     /**

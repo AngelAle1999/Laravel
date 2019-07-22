@@ -184,6 +184,18 @@
                         <span class="title">{{ trans('Type_Platillos') }}</span>
                     </a>
                 </li>
+                <li class="{{ (Request::is('/Plataforma/platillo*') ? 'open' : '') }}">
+                    <a href="/Plataforma/platillo">
+                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                        <span class="title">{{ trans('Platillos') }}</span>
+                    </a>
+                </li>
+                <li class="{{ (Request::is('/Plataforma/file*') ? 'open' : '') }}">
+                    <a href="/Plataforma/file">
+                        <i class="glyphicon glyphicon-file"></i>
+                        <span class="title">{{ trans('File') }}</span>
+                    </a>
+                </li>
             </ul>
 
         </div>
@@ -192,7 +204,7 @@
 
 
         <div class="project-info text-center" style="">
-          <p> Realizado por el equipo Hecho</p>
+          <p> Realizado por el equipo Echo</p>
         </div>
 
 

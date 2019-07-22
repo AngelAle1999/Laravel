@@ -22,6 +22,8 @@ Route::group(['middleware' => 'roles:1-2', 'prefix' => 'Plataforma'], function (
     Route::resource('mob','MobiliarioControlador');
     Route::resource('plan','PlantillaControlador');
     Route::resource('tpla','TypePlatillosControlador');
+    Route::resource('platillo','PlatilloController');
+    Route::resource('file','FileController');
     
 });
 
