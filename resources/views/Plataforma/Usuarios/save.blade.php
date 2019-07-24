@@ -1,4 +1,4 @@
-@extends('Plataforma.layout') @section('title') Banners @stop @section('content')
+@extends('Plataforma.layout') @section('title') Isuarios @stop @section('content')
 
 <div class="col-md-6">
 
@@ -29,7 +29,7 @@
                       <?php $lectura = "enabled" ?>
                     @endif
 
-                    {{ Form::open( array('url' => 'usua/'.$user->id_user, 'method' => 'POST','class' => 'datosPedido', 'enctype' => 'multipart/form-data') ) }}
+                    {{ Form::open( array('url' => 'Plataforma/usua/'.$user->id_user, 'method' => 'POST','class' => 'datosPedido', 'enctype' => 'multipart/form-data') ) }}
 
                         <div class="form-group">
                             {{ Form::label ('titulo', 'Nombre *', ['class' => 'form-label']) }}
@@ -75,7 +75,7 @@
                         @endif
 
                         <div class="text-right" style="margin-top:120px;">
-                             {{ link_to('usua', 'Cancelar', ['class' => 'btn btn-warning']) }}
+                             {{ link_to('Plataforma/usua', 'Cancelar', ['class' => 'btn btn-warning']) }}
                             {{ Form::submit('Guardar', ['class' => 'btn btn-success', 'type' => 'submit', 'id_user' => 'guardar']) }}
                         </div>
                         {{ csrf_field() }}

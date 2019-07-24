@@ -1,16 +1,16 @@
 @extends('Plataforma.layout')
 
 
-@section('title') Usuarios @stop
+@section('title') Plantilla @stop
 
 @section('content')
 
     <div class="col-md-12">
         <section class="box ">
           <header class="panel_header">
-              <h2 class="title pull-left">Usuarios</h2>
+              <h2 class="title pull-left">Plantilla</h2>
               <div class="actions panel_actions pull-right">
-                  {{ Html::link('Plataforma/usua/create', 'Crear Nuevo', array('class' => 'btn btn-info')) }}
+                  {{ Html::link('Plataforma/plan/create', 'Crear Nuevo', array('class' => 'btn btn-info')) }}
               </div>
           </header>
           <div class="content-body">
@@ -36,30 +36,33 @@
 
 
                 <div class="row">
-                    @if ($usua->count())
+                    @if ($plan->count())
                          <table id="example-1" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th>Nombre</th>
-                                                    <th>Correo</th>
-                                                    <th>Contraseña</th>
-                                                    <th>Id_Rol</th>
+                                                    <th>name</th>
+                                                    <th>type</th>
+                                                    <th>baja</th>
+                                                    <th>content</th>
                                                     <th>Opciones</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($usua as $usuario)
+                                                @foreach($plan as $plantilla)
                                                 <tr>
-                                                    <td>{{$usuario->name}}</td>
-                                                    <td>{{$usuario->email}}</td>
-                                                    <td>{{$usuario->password}}</td>
-                                                    <td>{{$usuario->id_roles}}</td>
+                                                    <td>{{$plantilla->name}}</td>
+                                                    <td>{{$plantilla->type}}</td>
+                                                    <td>{{$plantilla->baja}}</td>
+                                                    <td>{{$plantilla->content}}</td>
+                                                     
+
+
                                                      <td width="25%" class="text-left">
-                                        <a href="usua/{{$usuario->id_user}}/edit" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Editar registro" data-placement="top">
+                                        <a href="plan/{{$plantilla->id_plantilla}}/edit" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Editar registro" data-placement="top">
                                           <i class="fa fa-pencil" ></i>
                                         </a>
-                                        {{ Form::open(array('url' => 'Plataforma/usua/'.$usuario->id_user)) }}
+                                        {{ Form::open(array('url' => 'Plataforma/plan/'.$plantilla->id_plantilla)) }}
                                         {{ Form::hidden("_method", "DELETE") }}
                                         {{ Form::submit("x", array('class' => 'btn btn-xs btn-danger pull-left right15', 'onclick' => 'return confirm("Seguro que deseas eliminar?");')) }}
                                         {{ Form::close() }}

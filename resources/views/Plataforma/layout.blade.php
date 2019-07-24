@@ -157,10 +157,43 @@
                         <span class="title">{{ trans('Dashboard') }}</span>
                     </a>
                 </li>
-            <li class="{{ (Request::is('usua') ? 'open' : '') }}">
-                    <a href="/usua">
+            <li class="{{ (Request::is('Plataforma/usua*') ? 'open' : '') }}"> {{--  Esta linea hace que se muestre la pestaña en el menu activa --}}
+                    <a href="/Plataforma/usua">  {{-- A donde se va a redirigir --}}
                         <i class="fa fa-users"></i>
                         <span class="title">{{ trans('Usuarios') }}</span>
+                    </a>
+                </li>
+
+                <li class="{{ (Request::is('Plataforma/mob*') ? 'open' : '') }}">
+                    <a href="/Plataforma/mob">
+                        <i class="fa fa-desktop"></i>
+                        <span class="title">{{ trans('Mobiliario') }}</span>
+                    </a>
+                </li>
+
+                <li class="{{ (Request::is('/Plataforma/plan*') ? 'open' : '') }}">
+                    <a href="/Plataforma/plan">
+                        <i class="fa fa-file-o"></i>
+                        <span class="title">{{ trans('Plantilla') }}</span>
+                    </a>
+                </li>
+
+                 <li class="{{ (Request::is('/Plataforma/tpla*') ? 'open' : '') }}">
+                    <a href="/Plataforma/tpla">
+                        <i class="glyphicon glyphicon-cutlery"></i>
+                        <span class="title">{{ trans('Type_Platillos') }}</span>
+                    </a>
+                </li>
+                <li class="{{ (Request::is('/Plataforma/platillo*') ? 'open' : '') }}">
+                    <a href="/Plataforma/platillo">
+                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                        <span class="title">{{ trans('Platillos') }}</span>
+                    </a>
+                </li>
+                <li class="{{ (Request::is('/Plataforma/file*') ? 'open' : '') }}">
+                    <a href="/Plataforma/file">
+                        <i class="glyphicon glyphicon-file"></i>
+                        <span class="title">{{ trans('File') }}</span>
                     </a>
                 </li>
             </ul>
@@ -171,7 +204,7 @@
 
 
         <div class="project-info text-center" style="">
-          <p> Realizado por el equipo Hecho</p>
+          <p> Realizado por el equipo Echo</p>
         </div>
 
 

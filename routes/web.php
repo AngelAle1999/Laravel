@@ -10,48 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
 Route::get('/', function () {
-    return view('Plataforma.dashboard.index');
+    return '<div style="text-align:center; margin-top: 20%; font-weight: 5; height: 10vh; font-size: 45px; font-family: "Raleway", sans-serif;">Here return landing page <br> <img width="100" height="100" src="https://www.gustore.cl/img/estampados/444/444.png"><div>';
 });
-// Route::group(['middleware' => 'roles:1-2', 'prefix' => 'plataforma'], function () {
 
+Route::group(['middleware' => 'roles:1-2', 'prefix' => 'Plataforma'], function () {
 
-// Route::resource('Integrantes','IntegrantesControlador');
-// Route::resource('Servicios','ServiciosControlador');
-// Route::resource('usua','Usuarios');
-// Route::resource('banner','BannerCtrl');
-// Route::get('/usua','Usuarios@index')->name('usua');
-// Auth::routes();
+    Route::view('/', 'Plataforma.dashboard.index');
+    Route::resource('usua','Usuarios');
+    Route::resource('mob','MobiliarioControlador');
+    Route::resource('plan','PlantillaControlador');
+    Route::resource('tpla','TypePlatillosControlador');
+    Route::resource('platillo','PlatilloController');
+    Route::resource('file','FileController');
+    
+});
 
-// Route::get('/home', 'HomeController@index')->name('home');
-
-// Auth::routes();
-// Route::get('/dash', 'dashboardcontrolador@index')->name('dash');
-
-// Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('Plataforma', function (){
-// return view('Plataforma.dashboard.index');
-// } )
-// });
-
-
-
-
-Route::resource('Integrantes','IntegrantesControlador');
-Route::resource('Servicios','ServiciosControlador');
-Route::resource('usua','Usuarios');
-Route::resource('banner','BannerCtrl');
-Route::get('/usua','Usuarios@index')->name('usua');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-Route::get('/dash', 'dashboardcontrolador@index')->name('dash');
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('Plataforma', function (){
-return view('Plataforma.dashboard.index');
-} )
 ?>
