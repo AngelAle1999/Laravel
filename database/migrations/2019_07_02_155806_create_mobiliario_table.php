@@ -21,7 +21,7 @@ class CreateMobiliarioTable extends Migration
             $table->integer('stock');
             $table->string('img_src');
             $table->float('price');
-            $table->char('baja',1);
+            $table->char('baja',1)->default(0);
             $table->timestamps();
         });
     }

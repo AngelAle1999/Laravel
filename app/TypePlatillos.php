@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TypePlatillos extends Model
 {
-  protected $table = 'type_platillos';
-    protected $primaryKey = 'id_type_platillo';
+  protected $table = 'typeplatillos';
+    protected $primaryKey = 'id_type_platillos';
     /**
      * The attributes that are mass assignable.
      *

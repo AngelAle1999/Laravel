@@ -52,7 +52,7 @@ class PlatilloController extends Controller
                 'name'=>'required|min:4|alpha',
                 'img_url'  => 'required',
                 'status'=> 'required',
-                'descripcion' => 'required|alpha',
+                'descripcion' => 'required',
                 'price'  => 'required|numeric',
                 'amount'  => 'required|numeric',
                 'infant_price'  => 'required|numeric',
@@ -65,7 +65,6 @@ class PlatilloController extends Controller
                 'price_amount_1' => 'required|numeric',
                 'condition_amount_2' => 'required|numeric',
                 'price_amount_2' => 'required|numeric',
-                'baja' => 'required'
                 ];
 
         $messages = [ 
@@ -75,7 +74,6 @@ class PlatilloController extends Controller
                 'img_url.required' => 'Debes de llenar el campo img_url',
                 'status.required'=> 'Debes de llenar el campo status',
                 'descripcion.required' => 'Debes de llenar el campo description',
-                'descripcion.alpha' => 'El campo description solo puede contener texto',
                 'price.required' => 'Debes de llenar el campo price',
                 'price.numeric' => 'El campo price solo puede contener numeros',
                 'amount.required' => 'Debes de llenar el campo amount',
@@ -100,7 +98,6 @@ class PlatilloController extends Controller
                 'condition_amount_2.numeric' => 'El campo condition_amount_2 solo puede contener numeros',
                 'price_amount_2.required' => 'Debes de llenar el campo price_amount_2',
                 'price_amount_2.numeric' => 'El campo price_amount_2 solo puede contener numeros',
-                'baja.required' => 'Debes de llenar el campo baja'
                 ];
 
         $validar = Validator::make($inputs, $rules, $messages);
@@ -170,7 +167,7 @@ class PlatilloController extends Controller
                 'name'=>'required|min:4|alpha',
                 'img_url'  => 'required',
                 'status'=> 'required',
-                'descripcion' => 'required|alpha',
+                'descripcion' => 'required',
                 'price'  => 'required|numeric',
                 'amount'  => 'required|numeric',
                 'infant_price'  => 'required|numeric',
@@ -183,7 +180,6 @@ class PlatilloController extends Controller
                 'price_amount_1' => 'required|numeric',
                 'condition_amount_2' => 'required|numeric',
                 'price_amount_2' => 'required|numeric',
-                'baja' => 'required'
                 ];
 
         $messages = [ 
@@ -193,7 +189,6 @@ class PlatilloController extends Controller
                 'img_url.required' => 'Debes de llenar el campo img_url',
                 'status.required'=> 'Debes de llenar el campo status',
                 'descripcion.required' => 'Debes de llenar el campo description',
-                'descripcion.alpha' => 'El campo description solo puede contener texto',
                 'price.required' => 'Debes de llenar el campo price',
                 'price.numeric' => 'El campo price solo puede contener numeros',
                 'amount.required' => 'Debes de llenar el campo amount',
@@ -218,7 +213,6 @@ class PlatilloController extends Controller
                 'condition_amount_2.numeric' => 'El campo condition_amount_2 solo puede contener numeros',
                 'price_amount_2.required' => 'Debes de llenar el campo price_amount_2',
                 'price_amount_2.numeric' => 'El campo price_amount_2 solo puede contener numeros',
-                'baja.required' => 'Debes de llenar el campo baja'
                 ];
 
         $validar = Validator::make($inputs, $rules, $messages);

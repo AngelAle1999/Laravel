@@ -42,7 +42,7 @@
                                 @else
                                   {{ Form::file ('img_url', ['class' => 'custom-file-input', 'id' => 'img_url', 'required' =>'required']) }}
                                 @endif
-                                @if($errors->first('img_url'))
+                                @if($errors->first('Imagen'))
                                   <div class="alert alert-error alert-dismissible fade in">
                                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                                       {{ $errors->first('img_url') }}
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Price *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Precio *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('price', $platillo->price) }}
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Amount *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Cantidad *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('amount', $platillo->amount) }}
@@ -88,7 +88,7 @@
                             </div>
                         </div>                         
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Infant_price *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Precio infantil *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('infant_price', $platillo->infant_price) }}
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Type_id *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Tipo_id *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('type_id', $platillo->type_id) }}
@@ -104,7 +104,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Condition_number_people_1 *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Condición_número_de_personas_1 *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('condition_number_people_1', $platillo->condition_number_people_1) }}
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Price_number_people_1 *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Precio_numero_de_personas_1 *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('price_number_people_1', $platillo->price_number_people_1) }}
@@ -120,7 +120,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Condition_number_people_2 *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Condición_número_de_personas_2 *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('condition_number_people_2', $platillo->condition_number_people_2) }}
@@ -128,7 +128,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Price_number_people_2 *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Precio_numero_de_personas_2 *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('price_number_people_2', $platillo->price_number_people_2) }}
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Condition_amount_1 *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Condicion_cantidad_1 *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('condition_amount_1', $platillo->condition_amount_1) }}
@@ -144,7 +144,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'price_amount_1 *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Precio_cantidad_1 *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('price_amount_1', $platillo->price_amount_1) }}
@@ -152,7 +152,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Condition_amount_2 *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Condicion_cantidad_2 *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('condition_amount_2', $platillo->condition_amount_2) }}
@@ -160,20 +160,14 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'price_amount_2 *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Precio_cantidad_2 *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('price_amount_2', $platillo->price_amount_2) }}
                                 {{ Form::text ('price_amount_2', $platillo->price_amount_2, ['class' => 'form-control price_amount_2']) }}
                             </div>
                         </div>
-                        <div class="form-group">
-                            {{ Form::label ('titulo', 'Baja *', ['class' => 'form-label']) }}
-                            <div class="controls">
-                                <i class=""></i>
-                                {{ Form::hidden('baja', $platillo->baja) }}
-                                {{ Form::text ('baja', $platillo->baja, ['class' => 'form-control baja']) }}
-                            </div>
+                       
                         </div>
                         @if($platillo->Id_platillo)
                           {{ Form::hidden ('_method', 'PUT', ['Id_platillo' => 'methodo']) }}

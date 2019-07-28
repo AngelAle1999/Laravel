@@ -61,7 +61,7 @@ class TypePlatillosControlador extends Controller
       $rules = [
             'name' => 'required|min:4|alpha',
             'img_src' => 'required',
-            'description' => 'required|min:4|alpha',
+            'description' => 'required|min:4',
 
 
         ];
@@ -72,7 +72,6 @@ class TypePlatillosControlador extends Controller
          'img_src.required' => 'Debes de llenar el campo img_src',
           'description.min' => 'Debes completar con al menos 4 caracteres el campo description',
          'description.required' => 'Debes de llenar el campo description',
-         'description.alpha' => 'El campo description solo puede contener texto',
       ];
 
          $validar = Validator::make($inputs, $rules, $messages);
@@ -136,7 +135,7 @@ class TypePlatillosControlador extends Controller
      $rules = [
             'name' => 'required|min:4|alpha',
             'img_src' => 'required',
-            'description' => 'required|min:4|alpha',
+            'description' => 'required|min:4',
 
 
         ];
@@ -147,7 +146,6 @@ class TypePlatillosControlador extends Controller
          'img_src.required' => 'Debes de llenar el campo img_src',
           'description.min' => 'Debes completar con al menos 4 caracteres el campo description',
          'description.required' => 'Debes de llenar el campo description',
-         'description.alpha' => 'El campo description solo puede contener texto',
       ];
          $validar = Validator::make($inputs, $rules, $messages);
 

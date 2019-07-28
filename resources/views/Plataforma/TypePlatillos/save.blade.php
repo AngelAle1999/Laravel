@@ -66,7 +66,7 @@
 
 
                          <div class="form-group">
-                            {{ Form::label ('titulo', 'Description *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Descripcion *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('description', $tpla->description) }}

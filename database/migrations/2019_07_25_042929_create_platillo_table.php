@@ -31,7 +31,7 @@ class CreatePlatilloTable extends Migration
             $table->float('price_amount_1');
             $table->integer('condition_amount_2');
             $table->float('price_amount_2');
-            $table->char('baja',1);
+            $table->char('baja',1)->default(0);
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@
 
     <section class="box">
         <header class="panel_header">
-            <h2 class="title pull-left">GUARDAR PLATILLO</h2>
+            <h2 class="title pull-left">GUARDAR FILES</h2>
         </header>
         <div class="content-body">
             <div class="row">
@@ -26,7 +26,7 @@
                     @endif
                     {{ Form::open( array('url' => 'Plataforma/file/'.$file->id_file, 'method' => 'POST','class' => 'datosPedido', 'enctype' => 'multipart/form-data') ) }}
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Name *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Nombre *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('name', $file->name) }}
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Description *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Descripcion *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('description', $file->description) }}
@@ -63,7 +63,7 @@
                             </div>
                         </div>                
                         <div class="form-group">
-                            {{ Form::label ('titulo', 'Type *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Tipo *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('type', $file->type) }}

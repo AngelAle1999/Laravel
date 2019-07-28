@@ -14,7 +14,7 @@ class Plantilla extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'type', 'baja', 'content',
+        'name', 'type','baja', 'content',
     ];
 
     /**

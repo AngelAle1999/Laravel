@@ -37,11 +37,10 @@
             <table id="example-1" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th>name</th>
-                  <th>description</th>
-                  <th>url</th>
-                  <th>type</th>
-                  <th>baja</th>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>URL</th>
+                  <th>Tipo</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,7 +50,6 @@
                     <td>{{$file->description}}</td>
                     <td>{{$file->url}}</td>
                     <td>{{$file->type}}</td>
-                    <td>{{$file->baja}}</td>
                     <td width="25%" class="text-left">
                       <a href="file/{{$file->id_file}}/edit" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Editar registro" data-placement="top">
                         <i class="fa fa-pencil" ></i>

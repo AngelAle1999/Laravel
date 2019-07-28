@@ -40,13 +40,12 @@
                          <table id="example-1" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th>name</th>
-                                                    <th>presentation</th>
-                                                    <th>description</th>
+                                                    <th>Nombre</th>
+                                                    <th>Presentacion</th>
+                                                    <th>Descripcion</th>
                                                     <th>stock</th>
-                                                    <th>img_src</th>
-                                                    <th>price</th>
-                                                    <th>baja</th>
+                                                    <th>Imagen</th>
+                                                    <th>Precio</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -58,7 +57,6 @@
                                                     <td>{{$mobiliario->stock}}</td>
                                                     <td>{{$mobiliario->img_src}}</td>
                                                     <td>{{$mobiliario->price}}</td>
-                                                    <td>{{$mobiliario->baja}}</td>
 
 
 

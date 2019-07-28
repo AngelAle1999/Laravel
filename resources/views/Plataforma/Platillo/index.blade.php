@@ -37,22 +37,21 @@
             <table id="example-1" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th>name</th>
-                  <th>img_url</th>
-                  <th>description</th>
-                  <th>price</th>
-                  <th>amount</th>
-                  <th>infant price</th>
-                  <th>Type id</th>
-                  <th>Condition numbre people 1</th>
-                  <th>Price number people 1</th>
-                  <th>Condition numbre people 2</th>
-                  <th>Price number people 2</th>
-                  <th>Condition amount 1</th>
-                  <th>Price amount 1</th>
-                  <th>Condition amount 2</th>
-                  <th>Price amount 2</th>
-                  <th>baja</th>
+                  <th>Nombre</th>
+                  <th>Imagen</th>
+                  <th>Descripcion</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
+                  <th>Precio infantil</th>
+                  <th>Tipo id</th>
+                  <th>Condición número de personas 1</th>
+                  <th>Precio numero de personas 1</th>
+                  <th>Condición número de personas 2</th>
+                  <th>Precio numero de personas 2</th>
+                  <th>Condicion cantidad 1</th>
+                  <th>Precio cantidad 1</th>
+                  <th>Condicion cantidad 2</th>
+                  <th>Precio cantidad 2</th>
                 </tr>
               </thead>
               <tbody>
@@ -74,7 +73,6 @@
                     <td>{{$platillo->price_amount_1}}</td>
                     <td>{{$platillo->condition_amount_2}}</td>
                     <td>{{$platillo->price_amount_2}}</td>
-                    <td>{{$platillo->baja}}</td>
                     <td width="25%" class="text-left">
                       <a href="platillo/{{$platillo->Id_platillo}}/edit" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Editar registro" data-placement="top">
                         <i class="fa fa-pencil" ></i>

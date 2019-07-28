@@ -40,9 +40,9 @@
                          <table id="example-1" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th>name</th>
-                                                    <th>img_src</th>
-                                                    <th>description</th>
+                                                    <th>Nombre</th>
+                                                    <th>Imagen</th>
+                                                    <th>Descripcion</th>
 
                                                 </tr>
                                             </thead>

@@ -19,7 +19,7 @@ class CreateFileTable extends Migration
             $table->string('description');
             $table->string('url');
             $table->string('type');
-            $table->char('baja',1);
+            $table->char('baja',1)->default(0);
             $table->timestamps();
         });
     }

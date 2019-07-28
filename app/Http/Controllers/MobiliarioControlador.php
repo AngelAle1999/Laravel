@@ -60,12 +60,12 @@ class MobiliarioControlador extends Controller
       // return $inputs;
       $rules = [
             'name' => 'required|min:4|alpha',
-            'presentation' => 'required|alpha',
-            'description' => 'required|alpha',
+            'presentation' => 'required',
+            'description' => 'required',
             'stock' => 'required|numeric',
             'img_src' => 'required',
             'price' => 'required|numeric',
-            'baja' => 'required',
+ 
 
         ];
       $messages = [ 
@@ -73,15 +73,13 @@ class MobiliarioControlador extends Controller
          'name.required' => 'Debes de llenar el campo nombre',
          'name.alpha' => 'El campo nombre solo puede contener texto',
          'presentation.required' => 'Debes de llenar el campo presentation',
-         'presentation.alpha' => 'El campo presentation solo puede contener texto',
          'description.required' => 'Debes de llenar el campo description',
-         'description.alpha' => 'El campo description solo puede contener texto',
          'stock.required' => 'Debes de llenar el campo stock',
          'stock.numeric' => 'El campo stock solo puede contener numeros',
          'img_src.required' => 'Debes de llenar el campo img_src',
          'price.required' => 'Debes de llenar el campo price',
          'price.numeric' => 'El campo price solo puede contener numeros',
-         'baja.required' => 'Debes de llenar el campo baja',
+        
 
       ];
 
@@ -145,12 +143,12 @@ class MobiliarioControlador extends Controller
       // return $inputs;
       $rules = [
             'name' => 'required|min:4|alpha',
-            'presentation' => 'required|alpha',
-            'description' => 'required|alpha',
+            'presentation' => 'required',
+            'description' => 'required',
             'stock' => 'required|numeric',
             'img_src' => 'required',
             'price' => 'required|numeric',
-            'baja' => 'required',
+  
 
         ];
       $messages = [ 
@@ -158,15 +156,12 @@ class MobiliarioControlador extends Controller
          'name.required' => 'Debes de llenar el campo nombre',
          'name.alpha' => 'El campo nombre solo puede contener texto',
          'presentation.required' => 'Debes de llenar el campo presentation',
-         'presentation.alpha' => 'El campo presentation solo puede contener texto',
          'description.required' => 'Debes de llenar el campo description',
-         'description.alpha' => 'El campo description solo puede contener texto',
          'stock.required' => 'Debes de llenar el campo stock',
          'stock.numeric' => 'El campo stock solo puede contener numeros',
          'img_src.required' => 'Debes de llenar el campo img_src',
          'price.required' => 'Debes de llenar el campo price',
          'price.numeric' => 'El campo price solo puede contener numeros',
-         'baja.required' => 'Debes de llenar el campo baja',
 
       ];
 

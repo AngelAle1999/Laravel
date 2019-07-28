@@ -41,7 +41,7 @@
                         </div>
 
                          <div class="form-group">
-                            {{ Form::label ('titulo', 'Presentation *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Presentacion *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('presentation', $mob->presentation) }}
@@ -51,7 +51,7 @@
 
 
                          <div class="form-group">
-                            {{ Form::label ('titulo', 'Description *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Descripcion *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('description', $mob->description) }}
@@ -95,7 +95,7 @@
 
 
                           <div class="form-group">
-                            {{ Form::label ('titulo', 'Price *', ['class' => 'form-label']) }}
+                            {{ Form::label ('titulo', 'Precio *', ['class' => 'form-label']) }}
                             <div class="controls">
                                 <i class=""></i>
                                 {{ Form::hidden('price', $mob->price) }}
@@ -104,15 +104,7 @@
                         </div>
 
                          
-                           <div class="form-group">
-                            {{ Form::label ('titulo', 'Baja *', ['class' => 'form-label']) }}
-                            <div class="controls">
-                                <i class=""></i>
-                                {{ Form::hidden('baja', $mob->baja) }}
-                                {{ Form::text ('baja', $mob->baja, ['class' => 'form-control baja']) }}
-                            </div>
-                        </div>
-                        
+                         
                          @if($mob->id_mobiliario)
                           {{ Form::hidden ('_method', 'PUT', ['id_mobiliario' => 'methodo']) }}
                         @endif

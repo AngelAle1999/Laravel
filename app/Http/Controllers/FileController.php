@@ -50,7 +50,7 @@ class FileController extends Controller
         $inputs = Request::all();
         $rules = [
                 'name'=>'required|min:4|alpha',
-                'description' => 'required|alpha',
+                'description' => 'required',
                 'url'  => 'required',
                 'type'  => 'required|numeric'
                 ];
@@ -60,7 +60,6 @@ class FileController extends Controller
                 'name.required' => 'Debes de llenar el campo name',
                 'name.alpha' => 'El campo name solo puede contener texto',
                 'description.required' => 'Debes de llenar el campo description',
-                'description.alpha' => 'El campo description solo puede contener texto',
                 'url.required' => 'Debes de llenar el campo url',
                 'type.required' => 'Debes de llenar el campo type',
                 'type.numeric' => 'El campo type solo puede contener numeros'
@@ -143,7 +142,7 @@ class FileController extends Controller
 
         $rules = [
                 'name'=>'required|min:4|alpha',
-                'description' => 'required|alpha',
+                'description' => 'required',
                 'url'  => 'required',
                 'type'  => 'required|numeric'
                 ];
@@ -153,7 +152,6 @@ class FileController extends Controller
                 'name.required' => 'Debes de llenar el campo name',
                 'name.alpha' => 'El campo name solo puede contener texto',
                 'description.required' => 'Debes de llenar el campo description',
-                'description.alpha' => 'El campo description solo puede contener texto',
                 'url.required' => 'Debes de llenar el campo url',
                 'type.required' => 'Debes de llenar el campo type',
                 'type.numeric' => 'El campo type solo puede contener numeros'
