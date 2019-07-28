@@ -22,7 +22,7 @@ class PlantillaControlador extends Controller
      */
     public function index()
     {
-          $plan =Plantilla::all();
+      $plan =Plantilla::all();
       return view('Plataforma.Plantilla.index', compact('plan'));
     }
 
@@ -34,18 +34,8 @@ class PlantillaControlador extends Controller
      */
     public function create()
     {
-    $a = new Plantilla();
-      // $pos = [];
-      // for ($i=1; $i <= count(User::all()) + 1 ; $i++) {
-      //   $pos[$i] = $i;
-      // }
-     $plantilla = [
-        'plan' => $a,
-        // 'posiciones' => $pos
-    ];
-      // return $data;
-
-
+      $a = new Plantilla();
+      $plantilla = ['plan' => $a];
       return view('Plataforma.Plantilla.save ')->with($plantilla);
     }
 
@@ -58,40 +48,42 @@ class PlantillaControlador extends Controller
      */
     public function store(Request $request)
     {
-    $inputs = Request::all();
+      $inputs = Request::all();
       // return $inputs;
       $rules = [
-            'name' => 'required|min:4|alpha',
-            'type' => 'required|alpha',
-            'baja' => 'required',
-            'content' => 'required|alpha',
-
-        ];
+                  'name' => 'required|min:4',
+                  'type' => 'required',
+                  'content' => 'required'
+                ];
       $messages = [ 
-          'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
-         'name.required' => 'Debes de llenar el campo nombre',
-         'name.alpha' => 'El campo nombre solo puede contener texto',
-         'type.required' => 'Debes de llenar el campo type',
-         'type.alpha' => 'El campo type solo puede contener texto',
-         'baja.required' => 'Debes de llenar el campo baja',
-         'content.required' => 'Debes de llenar el campo content',
-         'content.alpha' => 'El campo content solo puede contener texto',
-      ];
+                    'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
+                    'name.required' => 'Debes de llenar el campo nombre',
+                    'type.required' => 'Debes de llenar el campo type',
+                    'content.required' => 'Debes de llenar el campo content',
+                    'content.alpha' => 'El campo content solo puede contener texto',
+                  ];
 
-         $validar = Validator::make($inputs, $rules, $messages);
+      $validar = Validator::make($inputs, $rules, $messages);
 
-      if($validar->fails()){
+      if($validar->fails())
+      {
         return Redirect::back()->withInput(Request::all())->withErrors($validar);
-      }else{
+      }
+      else
+      {
         $plan = Plantilla::create($inputs);
-        if($plan){
+        if($plan)
+        {
           session()->flash('success','Plantilla Creada!');
-        }else{
+        }
+        else
+        {
           session()->flash('notice','¡Ocurrio un error al crear la Plantilla, intentalo de nuevo!');
         }
 
-    return redirect()->to('Plataforma/plan'); 
-    }}
+        return redirect()->to('Plataforma/plan'); 
+      }
+    }
 
     /**
      * Display the specified resource.
@@ -113,17 +105,14 @@ class PlantillaControlador extends Controller
     public function edit($id)
     {
       $edit = Plantilla::findOrFail($id);
-       $pos = [];
-       for ($i=1; $i <= count(Plantilla::all()) ; $i++) {
+      $pos = [];
+      for ($i=1; $i <= count(Plantilla::all()) ; $i++) {
         $pos[$i] = $i;
-       }
-     $a = [
-        'plan' => $edit,
-        // 'posiciones' => $pos
-    ];
+      }
+      $a = ['plan' => $edit];
  
-    return view('Plataforma.Plantilla.save')->with($a);
-}
+      return view('Plataforma.Plantilla.save')->with($a);
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -133,31 +122,28 @@ class PlantillaControlador extends Controller
      */
     public function update(Request $request, $id)
     {
-       $inputs = Request::all();
-      // return $inputs;
+      $inputs = Request::all();
+        // return $inputs;
       $rules = [
-            'name' => 'required|min:4|alpha',
-            'type' => 'required|alpha',
-            'baja' => 'required',
-            'content' => 'required|alpha',
-
-        ];
+                  'name' => 'required|min:4',
+                  'type' => 'required',
+                  'content' => 'required'
+                ];
       $messages = [ 
-          'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
-         'name.required' => 'Debes de llenar el campo nombre',
-         'name.alpha' => 'El campo nombre solo puede contener texto',
-         'type.required' => 'Debes de llenar el campo type',
-         'type.alpha' => 'El campo type solo puede contener texto',
-         'baja.required' => 'Debes de llenar el campo baja',
-         'content.required' => 'Debes de llenar el campo content',
-         'content.alpha' => 'El campo content solo puede contener texto',
-      ];
+                    'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
+                    'name.required' => 'Debes de llenar el campo nombre',
+                    'type.required' => 'Debes de llenar el campo type',
+                    'content.required' => 'Debes de llenar el campo content',
+                  ];
 
-         $validar = Validator::make($inputs, $rules, $messages);
+      $validar = Validator::make($inputs, $rules, $messages);
 
-      if($validar->fails()){
+      if($validar->fails())
+      {
         return Redirect::back()->withInput(Request::all())->withErrors($validar);
-      }else{
+      }
+      else
+      {
         $plan = Plantilla::findOrFail($id);
         if($plan){
           session()->flash('success','Plantilla Modificada!');
@@ -166,8 +152,9 @@ class PlantillaControlador extends Controller
         }
         $plan->fill($inputs)->save();
 
-    return redirect()->to('Plataforma/plan'); 
-    }}
+        return redirect()->to('Plataforma/plan'); 
+      }
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -176,7 +163,7 @@ class PlantillaControlador extends Controller
      */
     public function destroy($id)
     {
-     Plantilla::destroy($id);
-            return redirect()->to('Plataforma/plan');    
+      Plantilla::destroy($id);
+      return redirect()->to('Plataforma/plan');    
     }
 }
