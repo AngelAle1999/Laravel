@@ -42,8 +42,7 @@
                                                 <tr>
                                                     <th>Nombre</th>
                                                     <th>Correo</th>
-                                                    <th>Contraseña</th>
-                                                    <th>Id_Rol</th>
+                                                    <th>Rol</th>
                                                     <th>Opciones</th>
 
                                                 </tr>
@@ -51,19 +50,18 @@
                                             <tbody>
                                                 @foreach($usua as $usuario)
                                                 <tr>
-                                                    <td>{{$usuario->name}}</td>
-                                                    <td>{{$usuario->email}}</td>
-                                                    <td>{{$usuario->password}}</td>
-                                                    <td>{{$usuario->id_roles}}</td>
-                                                     <td width="25%" class="text-left">
-                                        <a href="usua/{{$usuario->id_user}}/edit" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Editar registro" data-placement="top">
-                                          <i class="fa fa-pencil" ></i>
-                                        </a>
-                                        {{ Form::open(array('url' => 'Plataforma/usua/'.$usuario->id_user)) }}
-                                        {{ Form::hidden("_method", "DELETE") }}
-                                        {{ Form::submit("x", array('class' => 'btn btn-xs btn-danger pull-left right15', 'onclick' => 'return confirm("Seguro que deseas eliminar?");')) }}
-                                        {{ Form::close() }}
-                                    </td>
+                                                  <td>{{$usuario->name}}</td>
+                                                  <td>{{$usuario->email}}</td>
+                                                  <td>{{$usuario->nombre}}</td>
+                                                  <td width="25%" class="text-left">
+                                                    <a href="usua/{{$usuario->id_user}}/edit" class="btn btn-info btn-xs pull-left right15" rel="tooltip" data-animate=" animated bounce" data-toggle="tooltip" data-original-title="Editar registro" data-placement="top">
+                                                      <i class="fa fa-pencil" ></i>
+                                                    </a>
+                                                    {{ Form::open(array('url' => 'Plataforma/usua/'.$usuario->id_user)) }}
+                                                    {{ Form::hidden("_method", "DELETE") }}
+                                                    {{ Form::submit("x", array('class' => 'btn btn-xs btn-danger pull-left right15', 'onclick' => 'return confirm("Seguro que deseas eliminar?");')) }}
+                                                    {{ Form::close() }}
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>

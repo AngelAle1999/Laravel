@@ -52,8 +52,7 @@ class FileController extends Controller
                 'name'=>'required|min:4|alpha',
                 'description' => 'required|alpha',
                 'url'  => 'required',
-                'type'  => 'required|numeric',
-                'baja' => 'required'
+                'type'  => 'required|numeric'
                 ];
 
         $messages = [ 
@@ -64,8 +63,7 @@ class FileController extends Controller
                 'description.alpha' => 'El campo description solo puede contener texto',
                 'url.required' => 'Debes de llenar el campo url',
                 'type.required' => 'Debes de llenar el campo type',
-                'type.numeric' => 'El campo type solo puede contener numeros',
-                'baja.required' => 'Debes de llenar el campo baja'
+                'type.numeric' => 'El campo type solo puede contener numeros'
                 ];
 
         $validar = Validator::make($inputs, $rules, $messages);
@@ -76,17 +74,29 @@ class FileController extends Controller
         }
         else
         {
-            $file = Request::file('url');
-            $file = File::create($inputs);
-            if($file){
-            session()->flash('success','file Creado!');
-        }
-        else
-        {
-            session()->flash('notice','¡Ocurrio un error al crear el file, intentalo de nuevo!');
-        }
+            if ($request->hasFile('url'))
+            {
+               $file = $request->file('url');
+               $name = $file->getClientOriginalName();
+               $file->move(public_path().'/images/', $name);
+            }
+            $integrante = new Integrante();
+            $integrante->name=$request->input('name');
+            $integrante->description=$request->input('description');
+            $integrante->url=$name;
+            $integrante->type=$request->input('type');
+            $integrante->baja=0;
+            $integrante->save();
+            if($file)
+            {
+                session()->flash('success','file Creado!');
+            }
+            else
+            {
+                session()->flash('notice','¡Ocurrio un error al crear el file, intentalo de nuevo!');
+            }
 
-        return redirect()->to('Plataforma/file'); 
+            return redirect()->to('Plataforma/file'); 
         }
     }
 
@@ -135,8 +145,7 @@ class FileController extends Controller
                 'name'=>'required|min:4|alpha',
                 'description' => 'required|alpha',
                 'url'  => 'required',
-                'type'  => 'required|numeric',
-                'baja' => 'required'
+                'type'  => 'required|numeric'
                 ];
 
         $messages = [ 
@@ -147,8 +156,7 @@ class FileController extends Controller
                 'description.alpha' => 'El campo description solo puede contener texto',
                 'url.required' => 'Debes de llenar el campo url',
                 'type.required' => 'Debes de llenar el campo type',
-                'type.numeric' => 'El campo type solo puede contener numeros',
-                'baja.required' => 'Debes de llenar el campo baja'
+                'type.numeric' => 'El campo type solo puede contener numeros'
                 ];
 
         $validar = Validator::make($inputs, $rules, $messages);
@@ -159,8 +167,20 @@ class FileController extends Controller
         }
         else
         {
-            $file = Request::file('url');
-            $file = File::findOrFail($id);
+            if ($request->hasFile('url'))
+            {
+               $file = $request->file('url');
+               $name = $file->getClientOriginalName();
+               $file->move(public_path().'/images/', $name);
+            }
+            $integrante = new Integrante();
+            $integrante->name=$request->input('name');
+            $integrante->description=$request->input('description');
+            $integrante->url=$name;
+            $integrante->type=$request->input('type');
+            $integrante->baja=0;
+            $integrante->save();
+
             if($file)
             {
                 session()->flash('success','File Modificado!');

@@ -24,7 +24,10 @@ class Usuarios extends Controller
      */
     public function index()
     {
-      $usua =User::all();
+      $usuar =User::all();
+      $usua = DB::table('users')
+            ->join('roles', 'users.id_roles', '=', 'roles.id_roles')
+            ->get();
       return view('Plataforma.Usuarios.Index', compact('usua'));
   }
 
@@ -35,21 +38,13 @@ class Usuarios extends Controller
      */
     public function create()
     {
-     $usua2 = new User();
-      // $pos = [];
-      // for ($i=1; $i <= count(User::all()) + 1 ; $i++) {
-      //   $pos[$i] = $i;
-      // }
-     $usuarios = [
-        'user' => $usua2,
-        // 'posiciones' => $pos
-    ];
-      // return $data;
-$roles =Roles::all();
+      $usua2 = new User();
+      $usuarios = ['user' => $usua2];
+      
+      $roles =Roles::all();
 
-
-    return view('Plataforma.Usuarios.save',compact('roles'))->with($usuarios);
-}
+      return view('Plataforma.Usuarios.save',compact('roles'))->with($usuarios);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -62,44 +57,46 @@ $roles =Roles::all();
       $inputs = Request::all();
       // return $inputs;
       $rules = [
-            'name' => 'required|min:4',
-          'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:4',
-        'id_roles' => 'required',
-
-        ];
+                  'name' => 'required|min:4',
+                  'email' => 'required|email|unique:users,email',
+                  'password' => 'required|min:4',
+                  'id_roles' => 'required',
+                ];
       $messages = [ 
-          'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
-         'name.required' => 'Debes de llenar el campo nombre',
-         'name.alpha' => 'El campo nombre solo puede contener texto',
-          'email.unique' => 'El correo ya se encuentra registrado',
-        'email.email' => 'El correo debe contener @, gmail. hotmail, com, etc ',
-         'email.required' => 'Debes de llenar el campo correo',
-        'password.min' => 'Debes completar con al menos 4 caracteres el campo password',
-            'password.required' => 'Debes de llenar el campo contraseña',
-         'id_roles.required' => 'Debes de llenar el campo id_roles',
-      ];
+                    'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
+                    'name.required' => 'Debes de llenar el campo nombre',
+                    'name.alpha' => 'El campo nombre solo puede contener texto',
+                    'email.unique' => 'El correo ya se encuentra registrado',
+                    'email.email' => 'El correo debe contener @, gmail. hotmail, com, etc ',
+                    'email.required' => 'Debes de llenar el campo correo',
+                    'password.min' => 'Debes completar con al menos 4 caracteres el campo password',
+                    'password.required' => 'Debes de llenar el campo contraseña',
+                    'id_roles.required' => 'Debes de llenar el campo id_roles',
+                  ];
 
 
       $validar = Validator::make($inputs, $rules, $messages);
-          $inputs['password']=Hash::make($inputs['password']);
+      $inputs['password']=Hash::make($inputs['password']);
 
-      if($validar->fails()){
+      if($validar->fails())
+      {
         return Redirect::back()->withInput(Request::all())->withErrors($validar);
-      }else{
+      }
+      else
+      {
         $user = User::create($inputs);
-        if($user){
+        if($user)
+        {
           session()->flash('success','Usuario Creado!');
-        }else{
+        }
+        else
+        {
           session()->flash('notice','¡Ocurrio un error al crear el Usuario, intentalo de nuevo!');
         }
 
-    return redirect()->to('Plataforma/usua'); 
-    //     $usua=$request->except(['_token','_method']);
-    //     User::where('id',$id)->update($usua);
-    //     return redirect()->route('usua');
+        return redirect()->to('Plataforma/usua'); 
+      }
     }
-}
 
     /**
      * Display the specified resource.
@@ -120,20 +117,16 @@ $roles =Roles::all();
      */
     public function edit($id)
     {
-     $edit = User::findOrFail($id);
-       $pos = [];
-       for ($i=1; $i <= count(User::all()) ; $i++) {
+      $edit = User::findOrFail($id);
+      $pos = [];
+      for ($i=1; $i <= count(User::all()) ; $i++) {
         $pos[$i] = $i;
-       }
-     $a = [
-        'user' => $edit,
-        // 'posiciones' => $pos
-    ];
- $roles =Roles::all();
+      }
+      $a = ['user' => $edit];
+      $roles =Roles::all();
 
-
-    return view('Plataforma.Usuarios.save',compact('roles'))->with($a);
-}
+      return view('Plataforma.Usuarios.save',compact('roles'))->with($a);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -145,43 +138,66 @@ $roles =Roles::all();
     public function update(Request $request, $id)
     {
       $inputs = Request::all();
- $rules = [
-            'name' => 'required|min:4',
-          'email' => 'required|email',
-        'id_roles' => 'required',
-
-        ];
+      $rules = [
+                  'name' => 'required|min:4',
+                  'email' => 'required|email',
+                  'id_roles' => 'required'
+                ];
       $messages = [
-         'name.required' => 'Debes de llenar el campo nombre',
-          'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
-         'name.alpha' => 'El campo nombre solo puede contener texto',
-         'email.required' => 'Debes de llenar el campo correo',
-        'email.email' => 'El correo debe contener @, gmail. hotmail, com, etc ',
-         'id_roles.required' => 'Debes de llenar el campo id_roles',
-      ];
+                    'name.required' => 'Debes de llenar el campo nombre',
+                    'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
+                    'name.alpha' => 'El campo nombre solo puede contener texto',
+                    'email.required' => 'Debes de llenar el campo correo',
+                    'email.email' => 'El correo debe contener @, gmail. hotmail, com, etc ',
+                    'id_roles.required' => 'Debes de llenar el campo id_roles',
+                  ];
 
       $validar = Validator::make($inputs, $rules, $messages);
-      if(isset($inputs['password'])){
+      if(isset($inputs['password']))
+      {
         $inputs['password']=Hash::make($inputs['password']);
-      }
-
-      if($validar->fails()){
-        return Redirect::back()->withInput(Request::all())->withErrors($validar);
-      }else{
-        $user = User::findOrFail($id);
-        if($user){
-          session()->flash('success','Usuario Modificado!');
-        }else{
-          session()->flash('notice','¡Ocurrio un error al modificar el usuario, intentalo de nuevo!');
+        
+        if($validar->fails())
+        {
+          return Redirect::back()->withInput(Request::all())->withErrors($validar);
         }
-        $user->fill($inputs)->save();
+        else
+        {
+          $user = User::findOrFail($id);
+          if($user)
+          {
+            session()->flash('success','Usuario Modificado!');
+          }
+          else
+          {
+            session()->flash('notice','¡Ocurrio un error al modificar el usuario, intentalo de nuevo!');
+          }
+          $user->fill($inputs)->save();
 
-    return redirect()->to('Plataforma/usua'); 
-    //     $usua=$request->except(['_token','_method']);
-    //     User::where('id',$id)->update($usua);
-    //     return redirect()->route('usua');
+          return redirect()->to('Plataforma/usua'); 
+
+        }
+      }
+      else
+      {
+        if($validar->fails())
+        {
+          return Redirect::back()->withInput(Request::all())->withErrors($validar);
+        }
+        else
+        {
+
+          $user = DB::table('users')
+            ->where('id_user',$id)
+            ->update(['name'=>$inputs['name'],'email'=>$inputs['email'],'id_roles'=>$inputs['id_roles']]);
+
+          session()->flash('success','Usuario Modificado!');
+         
+
+          return redirect()->to('Plataforma/usua');
+        }
+      }
     }
-}
 
     /**
      * Remove the specified resource from storage.
@@ -191,6 +207,7 @@ $roles =Roles::all();
      */
     public function destroy($id)
     {
-        User::destroy($id);
-            return redirect()->to('Plataforma/usua');    }
+      User::destroy($id);
+      return redirect()->to('Plataforma/usua');    
+    }
 }

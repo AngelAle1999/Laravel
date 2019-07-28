@@ -70,14 +70,7 @@
                                 {{ Form::text ('type', $file->type, ['class' => 'form-control Type']) }}
                             </div>
                         </div>
-                        <div class="form-group">
-                            {{ Form::label ('titulo', 'Baja *', ['class' => 'form-label']) }}
-                            <div class="controls">
-                                <i class=""></i>
-                                {{ Form::hidden('baja', $file->baja) }}
-                                {{ Form::text ('baja', $file->baja, ['class' => 'form-control baja']) }}
-                            </div>
-                        </div>
+            
                         @if($file->id_file)
                           {{ Form::hidden ('_method', 'PUT', ['id_file' => 'methodo']) }}
                         @endif
