@@ -49,7 +49,7 @@ class PlatilloController extends Controller
     {
         $inputs = Request::all();
         $rules = [
-                'name'=>'required|min:4|alpha',
+                'name'=>'required|min:4',
                 'img_url'  => 'required',
                 'status'=> 'required',
                 'descripcion' => 'required',
@@ -70,7 +70,6 @@ class PlatilloController extends Controller
         $messages = [ 
                 'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
                 'name.required' => 'Debes de llenar el campo name',
-                'name.alpha' => 'El campo name solo puede contener texto',
                 'img_url.required' => 'Debes de llenar el campo img_url',
                 'status.required'=> 'Debes de llenar el campo status',
                 'descripcion.required' => 'Debes de llenar el campo description',
@@ -102,25 +101,29 @@ class PlatilloController extends Controller
 
         $validar = Validator::make($inputs, $rules, $messages);
 
-        if($validar->fails())
-        {
-            return Redirect::back()->withInput(Request::all())->withErrors($validar);
-        }
-        else
-        {
-            $file = Request::file('img_url');
-            $platillo = Platillo::create($inputs);
-            if($platillo){
-            session()->flash('success','platillo Creado!');
-        }
-        else
-        {
-            session()->flash('notice','¡Ocurrio un error al crear el platillo, intentalo de nuevo!');
+          if($validar->fails()){
+        return Redirect::back()->withInput(Request::all())->withErrors($validar);
+      }else{
+        $file = Request::file('img_src');
+        if($file){
+          $platillo = Platillo::create($inputs);
+          $archivo = "";
+          $extension = $file->getClientOriginalExtension();
+          $id = $platillo->id_platillo;
+          $archivo = "img/id_platillo".$id.".".$extension;
+
+          if($file->move("img/Platillo", $archivo)){
+            $platillo->img_src = $archivo;
+            $platillo->save();
+            session()->flash('success','Platillo Creado!');
+                return redirect()->to('Plataforma/platillo'); 
+          }
+        }else{
+          session()->flash('notice','¡Ocurrio un error al crear el Platillo, intentalo de nuevo!');
         }
 
-        return redirect()->to('Plataforma/platillo'); 
-        }
-    }
+    return redirect()->to('Plataforma/platillo'); 
+    }}
 
     /**
      * Display the specified resource.
@@ -164,7 +167,7 @@ class PlatilloController extends Controller
         $inputs = Request::all();
         
         $rules = [
-                'name'=>'required|min:4|alpha',
+                'name'=>'required|min:4',
                 'img_url'  => 'required',
                 'status'=> 'required',
                 'descripcion' => 'required',
@@ -185,7 +188,6 @@ class PlatilloController extends Controller
         $messages = [ 
                 'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
                 'name.required' => 'Debes de llenar el campo name',
-                'name.alpha' => 'El campo name solo puede contener texto',
                 'img_url.required' => 'Debes de llenar el campo img_url',
                 'status.required'=> 'Debes de llenar el campo status',
                 'descripcion.required' => 'Debes de llenar el campo description',
@@ -217,27 +219,29 @@ class PlatilloController extends Controller
 
         $validar = Validator::make($inputs, $rules, $messages);
 
-        if($validar->fails())
-        {
-            return Redirect::back()->withInput(Request::all())->withErrors($validar);
-        }
-        else
-        {
-            $file = Request::file('img_url');
-            $platillo = Platillo::findOrFail($id);
-            if($platillo)
-            {
-                session()->flash('success','Platillo Modificado!');
-            }
-            else
-            {
-                session()->flash('notice','¡Ocurrio un error al modificar el Platillo, intentalo de nuevo!');
-            }
-            $platillo->fill($inputs)->save();
+         if($validar->fails()){
+        return Redirect::back()->withInput(Request::all())->withErrors($validar);
+      }else{
+        $file = Request::file('img_src');
+        if($file){
+        $platillo = Platillo::findOrFail($id);
+          $archivo = "";
+          $extension = $file->getClientOriginalExtension();
+          $id = $platillo->id_platillo;
+          $archivo = "img/id_platillo".$id.".".$extension;
 
-        return redirect()->to('Plataforma/platillo');
+          if($file->move("img/Platillo", $archivo)){
+            $platillo->img_src = $archivo;
+            $platillo->save();
+            session()->flash('success','Platillo Modificado!');
+                return redirect()->to('Plataforma/platillo'); 
+          }
+        }else{
+          session()->flash('notice','¡Ocurrio un error al crear el Platillo, intentalo de nuevo!');
         }
-    }
+
+    return redirect()->to('Plataforma/platillo'); 
+    }}
 
     /**
      * Remove the specified resource from storage.

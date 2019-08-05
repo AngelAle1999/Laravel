@@ -26,5 +26,7 @@ Route::group(['middleware' => 'roles:1-2', 'prefix' => 'Plataforma'], function (
     Route::resource('file','FileController');
     
 });
-
+Route::get('/', function (){
+	return view('welcome');
+});
 ?>

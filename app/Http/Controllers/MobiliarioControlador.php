@@ -59,7 +59,7 @@ class MobiliarioControlador extends Controller
  $inputs = Request::all();
       // return $inputs;
       $rules = [
-            'name' => 'required|min:4|alpha',
+            'name' => 'required|min:4',
             'presentation' => 'required',
             'description' => 'required',
             'stock' => 'required|numeric',
@@ -71,7 +71,6 @@ class MobiliarioControlador extends Controller
       $messages = [ 
           'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
          'name.required' => 'Debes de llenar el campo nombre',
-         'name.alpha' => 'El campo nombre solo puede contener texto',
          'presentation.required' => 'Debes de llenar el campo presentation',
          'description.required' => 'Debes de llenar el campo description',
          'stock.required' => 'Debes de llenar el campo stock',
@@ -85,15 +84,25 @@ class MobiliarioControlador extends Controller
 
          $validar = Validator::make($inputs, $rules, $messages);
 
-      if($validar->fails()){
+         if($validar->fails()){
         return Redirect::back()->withInput(Request::all())->withErrors($validar);
       }else{
         $file = Request::file('img_src');
-        $mob = Mobiliario::create($inputs);
-        if($mob){
-          session()->flash('success','Mobiliario Creado!');
+        if($file){
+          $mob = Mobiliario::create($inputs);
+          $archivo = "";
+          $extension = $file->getClientOriginalExtension();
+          $id = $mob->id_mobiliario;
+          $archivo = "img/id_mobiliario".$id.".".$extension;
+
+          if($file->move("img/Mobiliario", $archivo)){
+            $mob->img_src = $archivo;
+            $mob->save();
+            session()->flash('success','Mobiliario Creado!');
+                return redirect()->to('Plataforma/mob'); 
+          }
         }else{
-          session()->flash('notice','¡Ocurrio un error al crear el Mobiliario, intentalo de nuevo!');
+          session()->flash('notice','¡Ocurrio un error al crear el Platillo, intentalo de nuevo!');
         }
 
     return redirect()->to('Plataforma/mob'); 
@@ -142,7 +151,7 @@ class MobiliarioControlador extends Controller
       $inputs = Request::all();
       // return $inputs;
       $rules = [
-            'name' => 'required|min:4|alpha',
+            'name' => 'required|min:4',
             'presentation' => 'required',
             'description' => 'required',
             'stock' => 'required|numeric',
@@ -154,7 +163,6 @@ class MobiliarioControlador extends Controller
       $messages = [ 
           'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
          'name.required' => 'Debes de llenar el campo nombre',
-         'name.alpha' => 'El campo nombre solo puede contener texto',
          'presentation.required' => 'Debes de llenar el campo presentation',
          'description.required' => 'Debes de llenar el campo description',
          'stock.required' => 'Debes de llenar el campo stock',
@@ -171,17 +179,25 @@ class MobiliarioControlador extends Controller
         return Redirect::back()->withInput(Request::all())->withErrors($validar);
       }else{
         $file = Request::file('img_src');
+        if($file){
         $mob = Mobiliario::findOrFail($id);
-        if($mob){
-          session()->flash('success','Mobiliario Modificado!');
+          $archivo = "";
+          $extension = $file->getClientOriginalExtension();
+          $id = $mob->id_mobiliario;
+          $archivo = "img/id_mobiliario".$id.".".$extension;
+
+          if($file->move("img/Mobiliario", $archivo)){
+            $mob->img_src = $archivo;
+            $mob->save();
+            session()->flash('success','Mobiliario Modificado!');
+                return redirect()->to('Plataforma/mob'); 
+          }
         }else{
-          session()->flash('notice','¡Ocurrio un error al modificar el Mobiliario, intentalo de nuevo!');
+          session()->flash('notice','¡Ocurrio un error al crear el Platillo, intentalo de nuevo!');
         }
-        $mob->fill($inputs)->save();
 
     return redirect()->to('Plataforma/mob'); 
     }}
-
 
 
 

@@ -67,37 +67,29 @@ class FileController extends Controller
 
         $validar = Validator::make($inputs, $rules, $messages);
 
-        if($validar->fails())
-        {
-            return Redirect::back()->withInput(Request::all())->withErrors($validar);
-        }
-        else
-        {
-            if ($request->hasFile('url'))
-            {
-               $file = $request->file('url');
-               $name = $file->getClientOriginalName();
-               $file->move(public_path().'/images/', $name);
-            }
-            $integrante = new Integrante();
-            $integrante->name=$request->input('name');
-            $integrante->description=$request->input('description');
-            $integrante->url=$name;
-            $integrante->type=$request->input('type');
-            $integrante->baja=0;
-            $integrante->save();
-            if($file)
-            {
-                session()->flash('success','file Creado!');
-            }
-            else
-            {
-                session()->flash('notice','¡Ocurrio un error al crear el file, intentalo de nuevo!');
-            }
+      if($validar->fails()){
+        return Redirect::back()->withInput(Request::all())->withErrors($validar);
+      }else{
+        $file = Request::file('file');
+        if($file){
+          $file = file::create($inputs);
+          $archivo = "";
+          $extension = $file->getClientOriginalExtension();
+          $id = $file->id_platillo;
+          $archivo = "img/id_file".$id.".".$extension;
 
-            return redirect()->to('Plataforma/file'); 
+          if($file->move("img/File", $archivo)){
+            $file->img_src = $archivo;
+            $file->save();
+            session()->flash('success','File Creado!');
+                return redirect()->to('Plataforma/file'); 
+          }
+        }else{
+          session()->flash('notice','¡Ocurrio un error al crear el Platillo, intentalo de nuevo!');
         }
-    }
+
+    return redirect()->to('Plataforma/file'); 
+    }}
 
     /**
      * Display the specified resource.

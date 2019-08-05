@@ -59,7 +59,7 @@ class TypePlatillosControlador extends Controller
      $inputs = Request::all();
       // return $inputs;
       $rules = [
-            'name' => 'required|min:4|alpha',
+            'name' => 'required|min:4',
             'img_src' => 'required',
             'description' => 'required|min:4',
 
@@ -68,7 +68,6 @@ class TypePlatillosControlador extends Controller
       $messages = [ 
           'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
          'name.required' => 'Debes de llenar el campo nombre',
-         'name.alpha' => 'El campo nombre solo puede contener texto',
          'img_src.required' => 'Debes de llenar el campo img_src',
           'description.min' => 'Debes completar con al menos 4 caracteres el campo description',
          'description.required' => 'Debes de llenar el campo description',
@@ -80,9 +79,19 @@ class TypePlatillosControlador extends Controller
         return Redirect::back()->withInput(Request::all())->withErrors($validar);
       }else{
         $file = Request::file('img_src');
-        $tpla = TypePlatillos::create($inputs);
-        if($tpla){
-          session()->flash('success','Platillo Creado!');
+        if($file){
+          $tpla = TypePlatillos::create($inputs);
+          $archivo = "";
+          $extension = $file->getClientOriginalExtension();
+          $id = $tpla->id_type_platillos;
+          $archivo = "img/TypePlatillo".$id.".".$extension;
+
+          if($file->move("img/TypePlatillo", $archivo)){
+            $tpla->img_src = $archivo;
+            $tpla->save();
+            session()->flash('success','Platillo Creado!');
+                return redirect()->to('Plataforma/tpla'); 
+          }
         }else{
           session()->flash('notice','¡Ocurrio un error al crear el Platillo, intentalo de nuevo!');
         }
@@ -133,7 +142,7 @@ class TypePlatillosControlador extends Controller
         $inputs = Request::all();
       // return $inputs;
      $rules = [
-            'name' => 'required|min:4|alpha',
+            'name' => 'required|min:4',
             'img_src' => 'required',
             'description' => 'required|min:4',
 
@@ -142,27 +151,36 @@ class TypePlatillosControlador extends Controller
       $messages = [ 
           'name.min' => 'Debes completar con al menos 4 caracteres el campo nombre',
          'name.required' => 'Debes de llenar el campo nombre',
-         'name.alpha' => 'El campo nombre solo puede contener texto',
          'img_src.required' => 'Debes de llenar el campo img_src',
           'description.min' => 'Debes completar con al menos 4 caracteres el campo description',
          'description.required' => 'Debes de llenar el campo description',
       ];
          $validar = Validator::make($inputs, $rules, $messages);
 
-      if($validar->fails()){
+       if($validar->fails()){
         return Redirect::back()->withInput(Request::all())->withErrors($validar);
       }else{
         $file = Request::file('img_src');
+        if($file){
         $tpla = TypePlatillos::findOrFail($id);
-        if($tpla){
-          session()->flash('success','Platillo Modificado!');
+          $archivo = "";
+          $extension = $file->getClientOriginalExtension();
+          $id = $tpla->id_type_platillos;
+          $archivo = "img/TypePlatillo".$id.".".$extension;
+
+          if($file->move("img/TypePlatillo", $archivo)){
+            $tpla->img_src = $archivo;
+            $tpla->save();
+            session()->flash('success','Platillo modificado!');
+                return redirect()->to('Plataforma/tpla'); 
+          }
         }else{
-          session()->flash('notice','¡Ocurrio un error al modificar el Platillo, intentalo de nuevo!');
+          session()->flash('notice','¡Ocurrio un error al crear el Platillo, intentalo de nuevo!');
         }
-        $tpla->fill($inputs)->save();
 
     return redirect()->to('Plataforma/tpla'); 
     }}
+
 
     /**
      * Remove the specified resource from storage.

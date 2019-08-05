@@ -14,4 +14,9 @@ class Platillo extends Model
      * @var array
      */
     protected $fillable = ['name', 'img_url', 'status', 'descripcion', 'price','amount','infant_price', 'type_id', 'condition_number_people_1', 'price_number_people_1', 'condition_number_people_2', 'price_number_people_2', 'condition_amount_1', 'price_amount_1', 'condition_amount_2', 'price_amount_2', 'baja'];
+
+
+     public function cotizacion(){
+    return $this->belongsTo('App\CotizacionPlatillo','Id_platillo','id_platillo');
+  }
 }

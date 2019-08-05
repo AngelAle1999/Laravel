@@ -349,7 +349,7 @@ a:hover, a:focus {
     min-height: 60px;
     position: fixed;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #000000;
     top: 0px;
     left: 0px;
     z-index: 1999;
@@ -362,7 +362,7 @@ a:hover, a:focus {
 }
 .page-topbar .logo-area {
     width: 300px;
-    background-color: #9972b5;
+    background-color: #000000;
     display: block;
     min-height: 60px;
     float: left;
@@ -434,7 +434,7 @@ a:hover, a:focus {
 /*---- top arrow - start ----- */
 
 .page-topbar .dropdown-menu {
-    background: #ffffff;
+    background: #000000;
     border: 1px solid #f5f5f5;
 }
 .page-topbar .dropdown-menu:after, .page-topbar .dropdown-menu:before {
@@ -686,7 +686,7 @@ a:hover, a:focus {
     width: 300px;
     position: fixed;
     padding: 0px;
-    background-color: rgba(50, 50, 58, 1.0);
+    background-color: #15161C;
     margin-top: 60px;
     overflow: hidden;
 }
@@ -6588,12 +6588,12 @@ border-left: 3px solid transparent;
     background-repeat: no-repeat;
 }
 .page-topbar.sidebar_shift .logo-area {
-    background-image: url('../images/logo-folded.png');
+    background-image: url('../images/logo-folded.jpg');
     background-repeat: no-repeat;
     background-position: right top;
 }
 .page-topbar.chat_shift .logo-area {
-    background-image: url('../images/logo-folded.png');
+    background-image: url('../img/logo.jpg');
     background-repeat: no-repeat;
     background-position: right top;
 }
